@@ -24,7 +24,8 @@ namespace Unik.Application.Commands.Member.Implementation
             {
                 throw new Exception("Member not found");
             }
-            model.Edit(editMemberDto.Name , editMemberDto.Address);
+
+            model.Edit(editMemberDto.Name , editMemberDto.Address); 
 
             _memberRepository.Update(model);
 

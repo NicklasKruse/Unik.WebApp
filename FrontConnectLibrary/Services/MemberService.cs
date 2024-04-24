@@ -1,5 +1,5 @@
 ﻿using FrontConnectLibrary.Interfaces;
-using FrontConnectLibrary.Models;
+using FrontConnectLibrary.Models.Member;
 using System.Net.Http.Json;
 
 namespace FrontConnectLibrary.Services

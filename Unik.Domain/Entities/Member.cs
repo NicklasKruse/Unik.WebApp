@@ -38,7 +38,7 @@ namespace Unik.Domain.Entities
             Address = address;
         }
 
-        public void Edit(string name, string address) //Tanken er at vi opretter et nyt medlem kun med UserId og derefter kan vi tilføje navn og adresse et andet sted.
+        public void Edit(string name, string address) //Edit er som sådan ikke Businesslogic. Opdatere bare properties og derfor kan den være i entiteten. Bruges sammen med Load i repository. Så kan vi skilde vores Entities fra vores DTO'er
         {
             Name = name;
             Address = address;

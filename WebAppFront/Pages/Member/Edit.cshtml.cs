@@ -12,8 +12,8 @@ namespace WebAppFront.Pages.Member
         {
             _memberService = memberService;
         }
-        [BindProperty] public EditMemberViewModel EditModel { get; set; }
-        public async Task<IActionResult> OnGet(int? memberId)
+        [BindProperty] public EditMemberViewModel EditViewModel { get; set; }
+        public async Task<IActionResult> OnGet(int memberId)
         {
             if(memberId == null)
             {
@@ -21,13 +21,14 @@ namespace WebAppFront.Pages.Member
             }
             var member = await _memberService.GetMemberById(memberId);
 
-            EditModel = new EditMemberViewModel
+            EditViewModel = new EditMemberViewModel
             {
-                Id = member.Id,
+                Id = member.Id, 
                 Name = member.Name,
                 Address = member.Address,
                 RowVersion = member.RowVersion
             };
+            return Page();
         }
     }
 }

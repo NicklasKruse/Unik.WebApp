@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontConnectLibrary.Models
+namespace FrontConnectLibrary.Models.Member
 {
-    public class MemberDeleteRequestDto
+    public class MemberQueryResultDto
     {
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
