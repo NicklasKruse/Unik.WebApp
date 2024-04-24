@@ -1,0 +1,22 @@
+﻿@page
+@model WebAppFront.Pages.Member.CreateModel
+
+<h2>Create New Member</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="CreateMemberViewModel.Name"></label>
+        <input asp-for="CreateMemberViewModel.Name" class="form-control" />
+        <span asp-validation-for="CreateMemberViewModel.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CreateMemberViewModel.Address"></label>
+        <input asp-for="CreateMemberViewModel.Address" class="form-control" />
+        <span asp-validation-for="CreateMemberViewModel.Address" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

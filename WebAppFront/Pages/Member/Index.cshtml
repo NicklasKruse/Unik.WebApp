@@ -1,0 +1,20 @@
+﻿@page
+@model WebAppFront.Pages.Member.IndexModel
+@{
+}
+<form method="post">
+    
+    <!-- Se alle medlemmer foreach(member in model) { model.name, model.address }  -->
+
+    <!--Authorize-->
+    <a asp-page="./Create">Opret Medlem</a>
+
+    <a asp-page="./Edit">Rediger Medlem</a>
+
+    <a asp-page="./Delete">Slet Medlem</a>
+    <!---->
+    <a asp-page="./Details">Detaljer</a>
+
+    <a asp-page="./Index">Medlemmer</a>
+    
+</form>

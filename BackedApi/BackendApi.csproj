@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>884f8081-6ae5-4c21-92e2-b6e146d25b15</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SqlServerContext.Migrations\SqlServerContext.Migrations.csproj" />
+    <ProjectReference Include="..\..\SqlServerContext\SqlServerContext.csproj" />
+    <ProjectReference Include="..\Shared\CrossCut.csproj" />
+    <ProjectReference Include="..\Unik.Application\Unik.Application.csproj" />
+    <ProjectReference Include="..\Unik.Domain\Unik.Domain.csproj" />
+    <ProjectReference Include="..\Unik.Infrastructure\Unik.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
