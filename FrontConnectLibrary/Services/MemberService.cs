@@ -25,9 +25,40 @@ namespace FrontConnectLibrary.Services
             }
         }
 
-        Task IMemberService.DeleteMember(int id)
+        async Task IMemberService.DeleteMember(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.DeleteAsync($"api/Member/delete/{id}");
+            if(response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            else
+            {
+                throw new Exception("Failed to delete member");
+            }
+        }
+
+        async Task IMemberService.EditMember(MemberEditRequestDto memberRequest)
+        {
+            var response = await _httpClient.PutAsJsonAsync("api/Member/edit", memberRequest);
+            if(response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            else
+            {
+                throw new Exception("Failed to edit member");
+            }
+        }
+
+        async Task<IEnumerable<MemberQueryResultDto>?> IMemberService.GetAllMember()
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<MemberQueryResultDto>>("api/Member"); //Possible null, så har "?" efter IEnumerable<MemberQueryResultDto>
+        }
+
+        async Task<MemberQueryResultDto> IMemberService.GetMemberById(int id)
+        {
+           return await _httpClient.GetFromJsonAsync<MemberQueryResultDto>($"api/Member/{id}");
         }
     }
 }

@@ -3,6 +3,8 @@ using Shared;
 using SqlServerContext;
 using Unik.Application.Commands.Member;
 using Unik.Application.Commands.Member.Implementation;
+using Unik.Application.Queries.Member;
+using Unik.Application.Queries.Member.Implementation;
 using Unik.Application.Repositories;
 using Unik.Infrastructure.Repositories;
 
@@ -29,6 +31,12 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(p =>
 //Service registrering Members
 builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 builder.Services.AddScoped<ICreateMemberCommand, CreateMemberCommand>();
+builder.Services.AddScoped<IGetAllMemberQuery, GetAllMemberQuery>();
+builder.Services.AddScoped<IGetMemberQuery, GetMemberQuery>();
+builder.Services.AddScoped<IEditMemberCommand, EditMemberCommand>();
+builder.Services.AddScoped<IDeleteMemberCommand, DeleteMemberCommand>();
+
+//Service registrering Booking
 
 //Service registrering Bookings
 

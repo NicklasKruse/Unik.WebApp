@@ -26,11 +26,19 @@ namespace Unik.Application.Commands.Member.Implementation
         void ICreateMemberCommand.CreateMember(MemberCreateRequestDto createMemberDto)
         {
 
-            unitOfWork.BeginTransaction(IsolationLevel.Serializable);
+            try
+            {
+                unitOfWork.BeginTransaction(IsolationLevel.Serializable);
 
-            var member = new Domain.Entities.Member(createMemberDto.Name, createMemberDto.Address);
-            _memberRepository.Add(member);
-            unitOfWork.Commit();
+                var member = new Domain.Entities.Member(createMemberDto.Name, createMemberDto.Address);
+                _memberRepository.Create(member);
+                unitOfWork.Commit();
+            }
+            catch 
+            {
+                unitOfWork.Rollback();
+                throw;
+            }
         }
     }
 }

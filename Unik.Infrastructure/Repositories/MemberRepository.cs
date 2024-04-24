@@ -1,4 +1,6 @@
-﻿using SqlServerContext;
+﻿using Microsoft.EntityFrameworkCore;
+using SqlServerContext;
+using Unik.Application.Queries.Member.DTO;
 using Unik.Application.Repositories;
 using Unik.Domain.Entities;
 
@@ -12,7 +14,17 @@ namespace Unik.Infrastructure.Repositories
             _db = db;
         }
 
-        void IMemberRepository.Add(Member member)
+        public Member Load(int id)
+        {
+            var member = _db.Memberships.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            if(member == null)
+            {
+                throw new Exception("Member not found");
+            }
+            return member;
+        }
+
+        void IMemberRepository.Create(Member member)
         {
             _db.Add(member);
             _db.SaveChanges();
@@ -24,19 +36,44 @@ namespace Unik.Infrastructure.Repositories
             _db.SaveChanges();
         }
 
-        IEnumerable<Member> IMemberRepository.GetAll()
+        IEnumerable<MemberQueryResultDto> IMemberRepository.GetAll()
         {
-            throw new NotImplementedException();
+
+            foreach (var member in _db.Memberships.AsNoTracking())
+            {
+                
+                yield return new MemberQueryResultDto
+                {
+                    Id = member.Id,
+                    Name = member.Name,
+                    Address = member.Address,
+                    UserId = member.UserId,
+                    RowVersion = member.RowVersion
+                };
+            }
         }
 
-        Member IMemberRepository.GetById(int id)
+        MemberQueryResultDto IMemberRepository.GetById(int id)
         {
-            throw new NotImplementedException();
+            var model = _db.Memberships.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            if (model == null)
+            {
+                throw new Exception("Member not found");
+            }
+            return new MemberQueryResultDto
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Address = model.Address,
+                UserId = model.UserId,
+                RowVersion = model.RowVersion
+            };
         }
 
         void IMemberRepository.Update(Member member)
         {
-            throw new NotImplementedException();
+            _db.Update(member);
+            _db.SaveChanges();
         }
     }
 }

@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Mappers\AutoMapper\" />
-    <Folder Include="Queries\Implementation\" />
   </ItemGroup>
 
 </Project>
