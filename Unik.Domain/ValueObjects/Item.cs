@@ -10,7 +10,7 @@ using Unik.Domain.Ínterfaces;
 
 namespace Unik.Domain.ValueObjects
 {
-    public class Item //Item kunne godt være et value object. Skal man kunne oprette et item uden at have en booking på det? Hvis ikke, så skal den være en entity
+    public class Item //Item kunne godt være et value object.
     {
 
         public int Id { get; set; }

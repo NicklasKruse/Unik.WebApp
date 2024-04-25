@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 using Unik.Application.Commands.Invitation;
 using Unik.Application.Commands.Invitation.RequestModels;
 using Unik.Application.Queries.Invitation;
@@ -6,6 +7,8 @@ using Unik.Application.Queries.Invitation.DTO;
 
 namespace BackendApi.Controllers
 {
+    [Route("api/[controller]")] //api/Invitation
+    [ApiController]
     public class InvitationController : Controller
     {
         private readonly ICreateInvitationCommand _createInvitationCommand;
@@ -50,6 +53,7 @@ namespace BackendApi.Controllers
             } 
         }
         [HttpPut("edit")] //api/invitation/edit
+        [Consumes(MediaTypeNames.Application.Json)]
         public ActionResult Edit([FromBody] InvitationEditRequestDto dto)
         {
             try

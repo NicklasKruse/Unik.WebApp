@@ -19,10 +19,6 @@ namespace Unik.Infrastructure.Repositories
             _context = backendDbContext;
         }
 
-        public Booking GetById(Guid id)
-        {
-            return null;
-        }
         public void UpdateBooking(Booking booking)
         {
             throw new NotImplementedException();

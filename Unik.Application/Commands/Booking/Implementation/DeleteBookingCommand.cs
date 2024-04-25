@@ -23,6 +23,7 @@ namespace Unik.Application.Commands.Booking.Implementation
                 throw new Exception("Booking not found");
             }
             _bookingRepository.DeleteBooking(model);
+
         }
     }
 }

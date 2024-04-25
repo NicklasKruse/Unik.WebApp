@@ -53,7 +53,7 @@ namespace BackendApi.Controllers
         }
 
         [HttpPut("edit")] //api/Member/edit
-        [Consumes(MediaTypeNames.Application.Json)]
+        [Consumes(MediaTypeNames.Application.Json)] //!!
         public ActionResult Edit([FromBody] MemberEditRequestDto dto)//Viker når frontend er klar. Det er frontconnectlibrary der skal sende data
         {
             try
