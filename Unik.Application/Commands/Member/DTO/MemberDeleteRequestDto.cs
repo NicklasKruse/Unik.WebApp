@@ -11,7 +11,7 @@ namespace Unik.Application.Commands.Member.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public string UserId { get; set; }
+       // public string UserId { get; set; }
         public byte[] RowVersion { get; set; }
     }
 }

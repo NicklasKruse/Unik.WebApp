@@ -15,7 +15,7 @@ namespace Unik.Domain.Entities
     {
         public int Id { get; set; }
         public List<Item> Items { get; set; }
-        //public string UserId { get; set; } Når vi laver login
+        public string UserId { get; set; } //Medlem opretter en booking. På booking skriver man sin email/UserId
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

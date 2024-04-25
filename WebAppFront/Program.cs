@@ -2,16 +2,18 @@ using FrontConnectLibrary.Interfaces; //har project reference to library nu
 using FrontConnectLibrary.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebAppFront.Data;
+using WebAppUserContext;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("WebAppUserConnection") ?? throw new InvalidOperationException("Connection string 'WebAppUserConnection' not found.");
+
+//Add-Migration InitialMigration -Context WebAppUserDbContext -Project WebAppUserContext.Migrations
 builder.Services.AddDbContext<WebAppUserDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+    options.UseSqlServer(connectionString, x => x.MigrationsAssembly("WebAppUserContext.Migrations")));
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<WebAppUserDbContext>();

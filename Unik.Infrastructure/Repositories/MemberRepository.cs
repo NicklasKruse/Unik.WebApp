@@ -47,7 +47,7 @@ namespace Unik.Infrastructure.Repositories
                     Id = member.Id,
                     Name = member.Name,
                     Address = member.Address,
-                    UserId = member.UserId,
+                   // UserId = member.UserId,
                     RowVersion = member.RowVersion
                 };
             }
@@ -65,7 +65,7 @@ namespace Unik.Infrastructure.Repositories
                 Id = model.Id,
                 Name = model.Name,
                 Address = model.Address,
-                UserId = model.UserId,
+                //UserId = model.UserId,
                 RowVersion = model.RowVersion
             };
         }

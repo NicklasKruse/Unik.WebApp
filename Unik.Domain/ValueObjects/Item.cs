@@ -16,9 +16,8 @@ namespace Unik.Domain.ValueObjects
         public int Id { get; set; }
         //public string ImageUrl { get; set; }
         //public List<Booking> Bookings { get; set; }
-        public string? Damage { get; set; }
+        public string? Damage { get; set; } //Skal være nullable, da det ikke er sikkert at der er sket skade på et item.
         public string Description { get; set; }
-        List<Booking> bookings { get; set; }
 
     }
 }

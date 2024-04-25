@@ -5,13 +5,7 @@ namespace Unik.Domain.Entities
 {
     public class Member : BaseEntity
     {
-        public int Id { get; set; }
-        public string? Name { get; set; } 
-        public string? Address { get; set; }
-        public string? UserId { get; set; } //String fordi det er ID fra Identity
-
-
-        // public string UserId { get; set; }
+        
         internal Member() 
         {
             //EF
@@ -37,6 +31,12 @@ namespace Unik.Domain.Entities
             Name = name;
             Address = address;
         }
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Address { get; set; }
+        public string? UserId { get; set; } //String fordi det er ID fra Identity
+
+       // public List<Booking> Bookings { get; set; } //hvilke bookings har de lavet. Hold det seperat for nu. Evt. Implementer forbindelse til bookings senere så man kan se hvilke bookings de har lavet før.
 
         public void Edit(string name, string address) //Edit er som sådan ikke Businesslogic. Opdatere bare properties og derfor kan den være i entiteten. Bruges sammen med Load i repository. Så kan vi skilde vores Entities fra vores DTO'er
         {

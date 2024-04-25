@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerContext", "..\SqlS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerContext.Migrations", "..\SqlServerContext.Migrations\SqlServerContext.Migrations.csproj", "{008CF174-1078-4A3C-AD47-677B053CDEFA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppUserContext.Migrations", "..\WebAppUserContext.Migrations\WebAppUserContext.Migrations.csproj", "{5AE25E73-A9F5-4F77-84A1-267DA305C528}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppUserContext", "..\WebAppUserContext\WebAppUserContext.csproj", "{7F0925FC-E237-4057-A2F6-202CAF2A2E5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{008CF174-1078-4A3C-AD47-677B053CDEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{008CF174-1078-4A3C-AD47-677B053CDEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{008CF174-1078-4A3C-AD47-677B053CDEFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE25E73-A9F5-4F77-84A1-267DA305C528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE25E73-A9F5-4F77-84A1-267DA305C528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE25E73-A9F5-4F77-84A1-267DA305C528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE25E73-A9F5-4F77-84A1-267DA305C528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F0925FC-E237-4057-A2F6-202CAF2A2E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F0925FC-E237-4057-A2F6-202CAF2A2E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F0925FC-E237-4057-A2F6-202CAF2A2E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F0925FC-E237-4057-A2F6-202CAF2A2E5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

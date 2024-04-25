@@ -11,7 +11,7 @@ namespace Unik.Application.Commands.Booking.DTO
     {
         public int Id { get; set; }
         public List<Item> Items { get; set; }
-        //public string UserId { get; set; } Når vi laver login
+        //public string UserId { get; set; } 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

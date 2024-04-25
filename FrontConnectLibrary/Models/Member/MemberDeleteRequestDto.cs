@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FrontConnectLibrary.Models.Member
 {
-    public class MemberDeleteRequestDto
+    public class MemberDeleteRequestDto // Ikke i brug
     {
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public string UserId { get; set; }
+        //public string UserId { get; set; }
         public byte[] RowVersion { get; set; }
     }
 }
