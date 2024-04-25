@@ -14,7 +14,7 @@ namespace Unik.Application.Repository
         void UpdateBooking(Booking booking);
         void DeleteBooking(Booking booking);
         BookingQueryResultDto GetById(int id);
-        IEnumerable<BookingQueryResultDto> GetAllBookings();
+        IEnumerable<BookingQueryResultDto> GetAllBooking();
         Booking Load(int id);
     }
 }

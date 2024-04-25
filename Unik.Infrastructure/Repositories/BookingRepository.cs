@@ -41,7 +41,7 @@ namespace Unik.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        IEnumerable<BookingQueryResultDto> IBookingRepository.GetAllBookings()
+        IEnumerable<BookingQueryResultDto> IBookingRepository.GetAllBooking()
         {
             foreach (var booking in _context.Bookings.AsNoTracking())
             {

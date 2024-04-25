@@ -7,8 +7,8 @@ using Unik.Application.Commands.Booking.DTO;
 
 namespace Unik.Application.Commands.Booking
 {
-    public interface ICreateBookingCommand
+    public interface IEditBookingCommand
     {
-        void CreateBooking(BookingCreateRequestDto bookingCreateDto);//Void så de kan afvikles i seperat tråd
+        void Edit(BookingEditRequestDto dto);
     }
 }
