@@ -28,6 +28,8 @@ namespace Unik.Application.Commands.Invitation.Implementation
             {
                 _unitOfWork.BeginTransaction(IsolationLevel.Serializable);
                 var invitation = new Domain.Entities.Invitation(invitationRequestDto.Description, invitationRequestDto.Date);
+                _invitationRepository.Create(invitation);
+                _unitOfWork.Commit();
             }
             catch
             {

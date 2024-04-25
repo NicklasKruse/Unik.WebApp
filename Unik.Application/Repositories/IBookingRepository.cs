@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unik.Application.Queries.Booking.DTO;
 using Unik.Domain.Models;
 
 namespace Unik.Application.Repository
@@ -12,8 +13,8 @@ namespace Unik.Application.Repository
         void AddBooking(Booking booking);
         void UpdateBooking(Booking booking);
         void DeleteBooking(Booking booking);
-        Booking GetBooking(Guid id);
-        IEnumerable<Booking> GetAllBookings();
-        int GetNextKey();
+        BookingQueryResultDto GetById(int id);
+        IEnumerable<BookingQueryResultDto> GetAllBookings();
+        Booking Load(int id);
     }
 }

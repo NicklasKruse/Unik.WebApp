@@ -1,5 +1,6 @@
 using FrontConnectLibrary.Interfaces;
 using FrontConnectLibrary.Models;
+using FrontConnectLibrary.Models.Member;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

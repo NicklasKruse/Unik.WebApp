@@ -14,7 +14,6 @@ namespace Unik.Infrastructure.Repositories
     public class InvitationRepository : IInvitationRepository
     {
         private readonly BackendDbContext _context;
-
         public InvitationRepository(BackendDbContext context)
         {
             _context = context;

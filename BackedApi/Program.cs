@@ -1,8 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Shared;
 using SqlServerContext;
+using Unik.Application.Commands.Invitation;
+using Unik.Application.Commands.Invitation.Implementation;
 using Unik.Application.Commands.Member;
 using Unik.Application.Commands.Member.Implementation;
+using Unik.Application.Queries.Invitation;
+using Unik.Application.Queries.Invitation.Implementation;
 using Unik.Application.Queries.Member;
 using Unik.Application.Queries.Member.Implementation;
 using Unik.Application.Repositories;
@@ -38,7 +42,14 @@ builder.Services.AddScoped<IDeleteMemberCommand, DeleteMemberCommand>();
 
 //Service registrering Booking
 
-//Service registrering Bookings
+//Service registrering Invitation
+builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
+builder.Services.AddScoped<ICreateInvitationCommand, CreateInvitationCommand>();
+builder.Services.AddScoped<IGetInvitationQuery, GetInvitationQuery>();
+builder.Services.AddScoped<IGetAllInvitationQuery, GetAllInvitationQuery>();
+builder.Services.AddScoped<IEditInvitationCommand, EditInvitationCommand>();   
+builder.Services.AddScoped<IDeleteInvitationCommand, DeleteInvitationCommand>();
+
 
 var app = builder.Build();
 

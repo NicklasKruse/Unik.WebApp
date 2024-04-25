@@ -23,9 +23,9 @@ namespace BackendApi.Controllers
             _deleteInvitationCommand = deleteInvitationCommand;
         }
 
-        [HttpPost("create")] //api/Invitation/create
+        [HttpPost("create")] //api/Invitation/create 
         public IActionResult Create(InvitationRequestDto dto)
-        {
+        { //2024-01-20 date time format til swagger
             try
             {
                 _createInvitationCommand.CreateInvitation(dto);
