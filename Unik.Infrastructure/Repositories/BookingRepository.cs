@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Unik.Application.Queries.Booking.DTO;
 using Unik.Application.Repository;
 using Unik.Domain.Entities;
-using Unik.Domain.Models;
 
 namespace Unik.Infrastructure.Repositories
 {

@@ -9,7 +9,7 @@ using Unik.Domain.Shared;
 using Unik.Domain.ValueObjects;
 
 
-namespace Unik.Domain.Models
+namespace Unik.Domain.Entities
 {
     public class Booking : BaseEntity
     {
@@ -24,7 +24,7 @@ namespace Unik.Domain.Models
         {
             //EF
         }
-        public Booking(List<Item> items, DateTime startDate, DateTime endDate) 
+        public Booking(List<Item> items, DateTime startDate, DateTime endDate)
         {
 
             Items = items;
@@ -37,18 +37,18 @@ namespace Unik.Domain.Models
 
             //Postconditions
         }
-        
+
 
         //Validering. Man må gerne have validering i WebApp.Models.ViewModels. Have validering tæt på brugeren, og hav validering hernede så der er universel dækning uanset om vi glemmer det, eller om vi laver en anden webapp
 
         public void Edit(List<Item> Items, DateTime startDate, DateTime endDate)
         {
             this.Items = Items;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
+            StartDate = startDate;
+            EndDate = endDate;
         }
 
     }
-    
+
 
 }

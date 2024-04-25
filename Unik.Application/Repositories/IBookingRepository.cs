@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unik.Application.Queries.Booking.DTO;
-using Unik.Domain.Models;
+using Unik.Domain.Entities;
 
 namespace Unik.Application.Repository
 {
