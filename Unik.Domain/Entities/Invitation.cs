@@ -17,7 +17,7 @@ namespace Unik.Domain.Entities
         //public List<InvitationAcceptance> Acceptances { get; private set; } = new List<InvitationAcceptance>();
         public Invitation()
         {
-            
+            //Ef
         }
         public Invitation(string? description, DateTime date)
         {

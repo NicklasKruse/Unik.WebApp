@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Unik.Application.Commands.Invitation.RequestModels
 {
-    internal class InvitationRequestDto
+    public class InvitationRequestDto
     {
+        public DateTime Date { get; set; }
+        public string Description { get; set; }
     }
 }
