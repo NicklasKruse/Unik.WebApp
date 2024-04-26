@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unik.Domain.ValueObjects
+namespace Unik.Application.Commands.Item.DTO
 {
-    public class Tool // : Item
+    public class ItemDeleteRequestDto
     {
+        public int Id { get; set; }
         public string Description { get; set; }
+        public string Damage { get; set; }
     }
 }

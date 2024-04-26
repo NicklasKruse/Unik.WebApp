@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Unik.Domain\Unik.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mappers\AutoMapper\" />
-  </ItemGroup>
-
 </Project>

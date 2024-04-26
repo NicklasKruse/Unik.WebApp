@@ -27,7 +27,7 @@ namespace Unik.Domain.Entities
         public Booking(List<Item> items, DateTime startDate, DateTime endDate)
         {
 
-            Items = items;
+            Items = items ?? new List<Item>(); //Sikre at den ikke er null 
             StartDate = startDate;
             EndDate = endDate;
 
@@ -43,7 +43,7 @@ namespace Unik.Domain.Entities
 
         public void Edit(List<Item> Items, DateTime startDate, DateTime endDate)
         {
-            this.Items = Items;
+            this.Items = Items ?? new List<Item>();
             StartDate = startDate;
             EndDate = endDate;
         }

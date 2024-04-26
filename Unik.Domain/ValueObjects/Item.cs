@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unik.Domain.Entities;
-using Unik.Domain.Ínterfaces;
-
-
-namespace Unik.Domain.ValueObjects
+﻿namespace Unik.Domain.ValueObjects
 {
+    /// <summary>
+    /// Item er et value object, som er en del af en booking. kendetegnet ved description.
+    /// </summary>
     public class Item //Item kunne godt være et value object.
     {
 
@@ -19,5 +12,17 @@ namespace Unik.Domain.ValueObjects
         public string? Damage { get; set; } //Skal være nullable, da det ikke er sikkert at der er sket skade på et item.
         public string Description { get; set; }
 
+        //Det er ikke hensigten at vi skal lave mange Items så vi behøver ikke at bruge så meget concurrency kontrol. så ingen rowversion.
+
+        public Item(string description)
+        {
+            Description = description;
+        }
+
+        public void Edit(string description, string damage)
+        {
+            Description = description;
+            Damage = damage;
+        }
     }
 }

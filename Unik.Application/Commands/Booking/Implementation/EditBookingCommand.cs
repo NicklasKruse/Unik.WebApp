@@ -4,28 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unik.Application.Commands.Booking.DTO;
+using Unik.Application.Mappers;
+using Unik.Application.Repositories;
 using Unik.Application.Repository;
+using Unik.Domain.Ínterfaces;
 
 namespace Unik.Application.Commands.Booking.Implementation
 {
     public class EditBookingCommand : IEditBookingCommand
     {
+        private readonly IBookingDomainService _domainService;
         private readonly IBookingRepository _bookingRepository;
+        private readonly IItemRepository _itemRepository;
+        private readonly IItemMapper _itemMapper;
 
-        public EditBookingCommand(IBookingRepository bookingRepository)
+        public EditBookingCommand(IBookingDomainService domainService, IBookingRepository bookingRepository, IItemRepository itemRepository, IItemMapper itemMapper)
         {
+            _domainService = domainService;
             _bookingRepository = bookingRepository;
+            _itemRepository = itemRepository;
+
+            _itemMapper = itemMapper;
         }
 
         void IEditBookingCommand.Edit(BookingEditRequestDto dto)
         {
-            var model = _bookingRepository.Load(dto.Id);
-            if (model == null)
+            var booking = _bookingRepository.Load(dto.Id);
+            if (booking == null)
             {
                 throw new Exception("Booking not found");
             }
-            model.Edit(dto.Items, dto.StartDate, dto.EndDate);
-            _bookingRepository.UpdateBooking(model);
+
+            // Hent items fra repository
+            var itemDtos = dto.ItemIds.Select(id => _itemRepository.GetById(id)).ToList();
+
+            // brug mapper til at konvertere itemDtos til domain model
+            var items = itemDtos.Select(dto => _itemMapper.ToDomainModel(dto)).ToList();
+
+            _domainService.UpdateBookingWithItems(booking, items);
+
+            _bookingRepository.UpdateBooking(booking);
         }
     }
 }
+        //void IEditBookingCommand.Edit(BookingEditRequestDto dto)
+        //{
+        //    var booking = _bookingRepository.Load(dto.Id);
+        //    if (booking == null)
+        //    {
+        //        throw new Exception("Booking not found");
+        //    }
+
+        //    var items = dto.ItemIds.Select(id => _itemRepository.GetById(id)).ToList();
+        //    _domainService.UpdateBookingWithItems(booking, items);
+        //    _bookingRepository.UpdateBooking(booking);
+        //}
+

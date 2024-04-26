@@ -10,8 +10,9 @@ namespace Unik.Application.Queries.Booking.DTO
     public class BookingQueryResultDto
     {
         public int Id { get; set; }
-        public List<Item> Items { get; set; }
-       // public string UserId { get; set; } 
+        public List<int> ItemIds { get; set; }
+        //public List<Item> Items { get; set; }
+        // public string UserId { get; set; } 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }

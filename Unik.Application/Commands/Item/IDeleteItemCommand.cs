@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unik.Domain.Ínterfaces
+namespace Unik.Application.Commands.Item
 {
-    public interface IBookingDomainService
+    public interface IDeleteItemCommand
     {
-        bool BookingOverlap(DateTime date);
+        void Delete(int id);
     }
 }

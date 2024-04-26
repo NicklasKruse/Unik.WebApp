@@ -43,7 +43,7 @@ namespace Unik.Infrastructure.Repositories
                 yield return new BookingQueryResultDto
                 {
                     Id = booking.Id,
-                    Items = booking.Items,
+                    ItemIds = booking.Items.Select(item => item.Id).ToList(),
                     StartDate = booking.StartDate,
                     EndDate = booking.EndDate
                     //Userid ??
@@ -61,7 +61,7 @@ namespace Unik.Infrastructure.Repositories
             return new BookingQueryResultDto
             {
                 Id = model.Id,
-                Items = model.Items,
+                ItemIds = model.Items.Select(x => x.Id).ToList(),
                 StartDate = model.StartDate,
                 EndDate = model.EndDate
             };
