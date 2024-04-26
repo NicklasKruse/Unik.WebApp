@@ -3,6 +3,7 @@ using System.Data;
 using Unik.Application.Commands.Booking.DTO;
 using Unik.Application.Repositories;
 using Unik.Application.Repository;
+using Unik.Domain.ValueObjects;
 
 namespace Unik.Application.Commands.Booking.Implementation
 {
@@ -22,28 +23,15 @@ namespace Unik.Application.Commands.Booking.Implementation
             try
             {
                 _unitOfWork.BeginTransaction(IsolationLevel.Serializable);
-
-                var items = new List<Domain.ValueObjects.Item>();
-
-                foreach (var itemId in dto.ItemIds)
+                var booking = new Domain.Entities.Booking(dto.Item, dto.StartDate, dto.EndDate)
                 {
-                    var itemDto = _itemRepository.GetById(itemId); 
-                    var item = new Domain.ValueObjects.Item(itemDto.Description)
-                    {
-                        Id = itemDto.Id,
-                        Damage = itemDto.Damage
-                    };
-
-                    items.Add(item);
-                }
-
-                var booking = new Domain.Entities.Booking(items, dto.StartDate, dto.EndDate);
-                _bookingRepository.AddBooking(booking);
-                _unitOfWork.Commit();
+                    UserId = dto.UserId
+                };
             }
-            catch
+            catch(Exception ex)
             {
                 _unitOfWork.Rollback();
+                Console.WriteLine(ex.ToString()); //Har fejl. Så bruger til at se hvad der sker
                 throw;
             }
         }

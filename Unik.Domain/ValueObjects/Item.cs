@@ -1,4 +1,6 @@
-﻿namespace Unik.Domain.ValueObjects
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Unik.Domain.ValueObjects
 {
     /// <summary>
     /// Item er et value object, som er en del af en booking. kendetegnet ved description.
@@ -14,6 +16,10 @@
 
         //Det er ikke hensigten at vi skal lave mange Items så vi behøver ikke at bruge så meget concurrency kontrol. så ingen rowversion.
 
+        public Item()
+        {
+            //EF
+        }
         public Item(string description)
         {
             Description = description;

@@ -10,8 +10,9 @@ namespace Unik.Application.Commands.Booking.DTO
     public class BookingEditRequestDto
     {   
         public int Id { get; set; }
-        public List<int> ItemIds { get; set; }
+        public Domain.ValueObjects.Item Item { get; set; }
         //public List<Item> Items { get; set; }
+        public string UserId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

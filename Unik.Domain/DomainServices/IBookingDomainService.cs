@@ -10,6 +10,6 @@ namespace Unik.Domain.Ínterfaces
 {
     public interface IBookingDomainService
     {
-        void UpdateBookingWithItems(Booking booking, List<Item> items);
+        void UpdateBookingWithItems(Booking booking, Item item);
     }
 }

@@ -14,7 +14,7 @@ namespace Unik.Domain.Entities
     public class Booking : BaseEntity
     {
         public int Id { get; set; }
-        public List<Item> Items { get; set; }
+        public Item Item { get; set; }
         public string UserId { get; set; } //Medlem opretter en booking. På booking skriver man sin email/UserId
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -24,10 +24,10 @@ namespace Unik.Domain.Entities
         {
             //EF
         }
-        public Booking(List<Item> items, DateTime startDate, DateTime endDate)
+        public Booking(Item item, DateTime startDate, DateTime endDate)
         {
 
-            Items = items ?? new List<Item>(); //Sikre at den ikke er null 
+            Item = item;
             StartDate = startDate;
             EndDate = endDate;
 
@@ -41,9 +41,9 @@ namespace Unik.Domain.Entities
 
         //Validering. Man må gerne have validering i WebApp.Models.ViewModels. Have validering tæt på brugeren, og hav validering hernede så der er universel dækning uanset om vi glemmer det, eller om vi laver en anden webapp
 
-        public void Edit(List<Item> Items, DateTime startDate, DateTime endDate)
+        public void Edit(Item Item, DateTime startDate, DateTime endDate)
         {
-            this.Items = Items ?? new List<Item>();
+            this.Item = Item;
             StartDate = startDate;
             EndDate = endDate;
         }

@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerContext.Migrations
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppUserContext.Migrations", "..\WebAppUserContext.Migrations\WebAppUserContext.Migrations.csproj", "{5AE25E73-A9F5-4F77-84A1-267DA305C528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppUserContext", "..\WebAppUserContext\WebAppUserContext.csproj", "{7F0925FC-E237-4057-A2F6-202CAF2A2E5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppUserContext", "..\WebAppUserContext\WebAppUserContext.csproj", "{7F0925FC-E237-4057-A2F6-202CAF2A2E5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -36,27 +36,10 @@ namespace Unik.Application.Commands.Booking.Implementation
             }
 
             // Hent items fra repository
-            var itemDtos = dto.ItemIds.Select(id => _itemRepository.GetById(id)).ToList();
-
-            // brug mapper til at konvertere itemDtos til domain model
-            var items = itemDtos.Select(dto => _itemMapper.ToDomainModel(dto)).ToList();
-
-            _domainService.UpdateBookingWithItems(booking, items);
-
+            booking.Edit(dto.Item, dto.StartDate, dto.EndDate);
             _bookingRepository.UpdateBooking(booking);
         }
     }
 }
-        //void IEditBookingCommand.Edit(BookingEditRequestDto dto)
-        //{
-        //    var booking = _bookingRepository.Load(dto.Id);
-        //    if (booking == null)
-        //    {
-        //        throw new Exception("Booking not found");
-        //    }
-
-        //    var items = dto.ItemIds.Select(id => _itemRepository.GetById(id)).ToList();
-        //    _domainService.UpdateBookingWithItems(booking, items);
-        //    _bookingRepository.UpdateBooking(booking);
-        //}
+  
 

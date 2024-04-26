@@ -16,19 +16,29 @@ namespace BackendApi.Controllers
         private readonly ICreateBookingCommand _createBookingCommand;
         private readonly IEditBookingCommand _editBookingCommand;
         private readonly IDeleteBookingCommand _deleteBookingCommand;
+        private readonly ILogger<BookingController> _logger;
 
-        public BookingController(IGetAllBookingQuery getAllBookingQuery, IGetBookingQuery getBookingQuery, ICreateBookingCommand createBookingCommand, IEditBookingCommand editBookingCommand, IDeleteBookingCommand deleteBookingCommand)
+        public BookingController(IGetAllBookingQuery getAllBookingQuery, IGetBookingQuery getBookingQuery, ICreateBookingCommand createBookingCommand, IEditBookingCommand editBookingCommand, IDeleteBookingCommand deleteBookingCommand, ILogger<BookingController> logger)
         {
             _getAllBookingQuery = getAllBookingQuery;
             _getBookingQuery = getBookingQuery;
             _createBookingCommand = createBookingCommand;
             _editBookingCommand = editBookingCommand;
             _deleteBookingCommand = deleteBookingCommand;
+            _logger = logger;
         }
 
         [HttpPost("create")] //api/Booking/create
         public IActionResult Create(BookingCreateRequestDto dto)
         {
+            if(!ModelState.IsValid)
+            {
+                foreach(var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    _logger.LogError(error.ErrorMessage);
+                }
+                return BadRequest(ModelState);
+            }
             try
             {
                 _createBookingCommand.CreateBooking(dto);
@@ -88,7 +98,6 @@ namespace BackendApi.Controllers
            var bookings = _getAllBookingQuery.GetAllBooking();
             return bookings.ToList(); //ToList()
         }
-        
 
     }
 }
