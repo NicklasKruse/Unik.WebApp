@@ -5,16 +5,24 @@ using Unik.Application.Commands.Booking;
 using Unik.Application.Commands.Booking.Implementation;
 using Unik.Application.Commands.Invitation;
 using Unik.Application.Commands.Invitation.Implementation;
+using Unik.Application.Commands.Item;
+using Unik.Application.Commands.Item.Implementation;
 using Unik.Application.Commands.Member;
 using Unik.Application.Commands.Member.Implementation;
+using Unik.Application.Mappers;
 using Unik.Application.Queries.Booking;
 using Unik.Application.Queries.Booking.Implementation;
 using Unik.Application.Queries.Invitation;
 using Unik.Application.Queries.Invitation.Implementation;
+using Unik.Application.Queries.Item;
+using Unik.Application.Queries.Item.Implementation;
 using Unik.Application.Queries.Member;
 using Unik.Application.Queries.Member.Implementation;
 using Unik.Application.Repositories;
 using Unik.Application.Repository;
+using Unik.Domain.Ínterfaces;
+using Unik.Infrastructure.DomainServices;
+using Unik.Infrastructure.Mappers;
 using Unik.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,6 +70,18 @@ builder.Services.AddScoped<IGetAllInvitationQuery, GetAllInvitationQuery>();
 builder.Services.AddScoped<IEditInvitationCommand, EditInvitationCommand>();   
 builder.Services.AddScoped<IDeleteInvitationCommand, DeleteInvitationCommand>();
 
+// Items
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<IGetAllItemQuery, GetAllItemQuery>();
+builder.Services.AddScoped<IGetItemQuery, GetItemQuery>();  
+builder.Services.AddScoped<ICreateItemCommand, CreateItemCommand>();
+builder.Services.AddScoped<IEditItemCommand, EditItemCommand>();
+builder.Services.AddScoped<IDeleteItemCommand, DeleteItemCommand>();
+
+
+builder.Services.AddScoped<IItemMapper, ItemMapper>();
+
+builder.Services.AddScoped<IBookingDomainService,BookingDomainService>();
 
 var app = builder.Build();
 
