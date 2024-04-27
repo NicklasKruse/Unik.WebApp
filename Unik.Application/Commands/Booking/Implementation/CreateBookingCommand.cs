@@ -26,14 +26,20 @@ namespace Unik.Application.Commands.Booking.Implementation
             try
             {
                 _unitOfWork.BeginTransaction(IsolationLevel.Serializable);
-                var booking = new Domain.Entities.Booking(dto.Item, dto.StartDate, dto.EndDate)
+               
+                var itemResult = _itemRepository.Load(dto.Item.Id);
+                
+                var booking = new Domain.Entities.Booking(itemResult, dto.StartDate, dto.EndDate)
                 {
-                    UserId = dto.UserId
+                    UserId = dto.UserId,
+
                 };
+
+
                 _bookingRepository.AddBooking(booking);
                 _unitOfWork.Commit();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _unitOfWork.Rollback();
                 Console.WriteLine(ex.ToString()); //Har fejl. Så bruger til at se hvad der sker
