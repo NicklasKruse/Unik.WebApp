@@ -18,6 +18,7 @@ builder.Services.AddDbContext<WebAppUserDbContext>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<WebAppUserDbContext>();
 
+builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
@@ -25,6 +26,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient<IMemberService, MemberService>(
     client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));  //Denne BasisUrl skal være den samme som i Launchsettings i BackendApi
+
+
 
 
 

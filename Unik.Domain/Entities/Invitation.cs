@@ -15,7 +15,7 @@ namespace Unik.Domain.Entities
         public string? Description { get; set; }//Hvad skal der stå i invitationen. Kan også være tom
         public DateTime Date { get; set; }
         //public List<InvitationAcceptance> Acceptances { get; private set; } = new List<InvitationAcceptance>();
-        public Invitation()
+        internal Invitation()
         {
             //Ef
         }

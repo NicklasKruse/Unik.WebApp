@@ -31,4 +31,8 @@
     <ProjectReference Include="..\FrontConnectLibrary\FrontConnectLibrary.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Uploads\" />
+	</ItemGroup>
+
 </Project>
