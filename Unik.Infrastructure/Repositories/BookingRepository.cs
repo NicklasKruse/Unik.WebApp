@@ -32,7 +32,7 @@ namespace Unik.Infrastructure.Repositories
 
         void IBookingRepository.DeleteBooking(Booking booking)
         {
-            _context.Remove(booking.Id);
+            _context.Remove(booking);
             _context.SaveChanges();
         }
 
