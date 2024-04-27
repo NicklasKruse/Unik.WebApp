@@ -20,7 +20,7 @@ namespace Unik.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public Booking()
+        internal Booking()
         {
             //EF
         }
