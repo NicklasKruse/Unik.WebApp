@@ -20,6 +20,7 @@ using Unik.Application.Queries.Member;
 using Unik.Application.Queries.Member.Implementation;
 using Unik.Application.Repositories;
 using Unik.Application.Repository;
+using Unik.Domain.DomainServices;
 using Unik.Domain.Ínterfaces;
 using Unik.Infrastructure.DomainServices;
 using Unik.Infrastructure.Mappers;
@@ -60,6 +61,7 @@ builder.Services.AddScoped<IGetAllBookingQuery, GetAllBookingQuery>();
 builder.Services.AddScoped<IGetBookingQuery, GetBookingQuery>();
 builder.Services.AddScoped<IEditBookingCommand, EditBookingCommand>();
 builder.Services.AddScoped<IDeleteBookingCommand, DeleteBookingCommand>();
+
 
 
 //Service registrering Invitation

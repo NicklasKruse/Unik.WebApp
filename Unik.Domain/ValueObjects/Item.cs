@@ -13,7 +13,6 @@ namespace Unik.Domain.ValueObjects
         //public List<Booking> Bookings { get; set; }
         public string? Damage { get; set; } //Skal være nullable, da det ikke er sikkert at der er sket skade på et item.
         public string Description { get; set; }
-
         //Det er ikke hensigten at vi skal lave mange Items så vi behøver ikke at bruge så meget concurrency kontrol. så ingen rowversion.
 
         public Item()

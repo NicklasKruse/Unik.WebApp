@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unik.Domain.DomainServices;
 using Unik.Domain.Ínterfaces;
 using Unik.Domain.Shared;
 using Unik.Domain.ValueObjects;
@@ -19,7 +20,6 @@ namespace Unik.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-
         public Booking()
         {
             //EF
@@ -30,7 +30,6 @@ namespace Unik.Domain.Entities
             Item = item;
             StartDate = startDate;
             EndDate = endDate;
-
             //Validering af dato overlap
             // Preconditions
             // Logic

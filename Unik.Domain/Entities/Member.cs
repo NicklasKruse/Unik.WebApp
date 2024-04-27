@@ -1,11 +1,12 @@
-﻿using Unik.Domain.Shared;
+﻿using Unik.Domain.DomainServices;
+using Unik.Domain.Shared;
 
 
 namespace Unik.Domain.Entities
 {
     public class Member : BaseEntity
     {
-        
+        private readonly IDateTimeProvider _dateTimeProvider;
         internal Member() 
         {
             //EF

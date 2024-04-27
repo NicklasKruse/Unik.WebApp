@@ -3,6 +3,7 @@ using System.Data;
 using Unik.Application.Commands.Booking.DTO;
 using Unik.Application.Repositories;
 using Unik.Application.Repository;
+using Unik.Domain.DomainServices;
 using Unik.Domain.ValueObjects;
 
 namespace Unik.Application.Commands.Booking.Implementation
@@ -12,11 +13,13 @@ namespace Unik.Application.Commands.Booking.Implementation
         private readonly IBookingRepository _bookingRepository;
         private readonly IItemRepository _itemRepository;
         private readonly IUnitOfWork _unitOfWork;
+
         public CreateBookingCommand(IBookingRepository bookingRepository, IItemRepository itemRepository, IUnitOfWork unitOfWork)
         {
             _bookingRepository = bookingRepository;
             _itemRepository = itemRepository;
             _unitOfWork = unitOfWork;
+
         }
         void ICreateBookingCommand.CreateBooking(BookingCreateRequestDto dto)
         {
