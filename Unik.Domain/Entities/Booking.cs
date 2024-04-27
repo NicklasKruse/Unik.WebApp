@@ -40,7 +40,7 @@ namespace Unik.Domain.Entities
 
         //Validering. Man må gerne have validering i WebApp.Models.ViewModels. Have validering tæt på brugeren, og hav validering hernede så der er universel dækning uanset om vi glemmer det, eller om vi laver en anden webapp
 
-        public void Edit(Item Item, DateTime startDate, DateTime endDate)
+        public void Edit(Item Item, DateTime startDate, DateTime endDate) //Kan ændre datoerne men ikke userid. Man kan også ændre Item
         {
             this.Item = Item;
             StartDate = startDate;
