@@ -30,6 +30,8 @@ namespace Unik.Application.Commands.Booking.Implementation
                 {
                     UserId = dto.UserId
                 };
+                _bookingRepository.AddBooking(booking);
+                _unitOfWork.Commit();
             }
             catch(Exception ex)
             {
