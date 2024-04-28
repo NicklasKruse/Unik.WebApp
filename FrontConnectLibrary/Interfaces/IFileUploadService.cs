@@ -11,5 +11,6 @@ namespace FrontConnectLibrary.Interfaces
     {
         Task<string> UploadFileAsync(IFormFile file);
         IEnumerable<string> ListFiles();
+        Task<(Stream FileStream, string ContentType)> GetFileAsync(string fileName);
     }
 }

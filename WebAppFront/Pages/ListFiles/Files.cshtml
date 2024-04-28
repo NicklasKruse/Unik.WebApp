@@ -1,0 +1,17 @@
+﻿@page
+@model FilesModel
+@{
+    ViewData["Title"] = "Uploaded Files";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<ul>
+    @foreach (var file in Model.Files)
+    {
+        <li>
+            @file
+            <a href="@Url.Page("./Files", "Download", new { fileName = file })">Download</a>
+        </li>
+    }
+</ul>

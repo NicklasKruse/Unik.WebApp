@@ -19,6 +19,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<WebAppUserDbContext>();
 
 builder.Services.AddScoped<IFileUploadService, FileUploadService>();
+builder.Services.AddScoped<IGetContentType, GetContentType>();
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages();
