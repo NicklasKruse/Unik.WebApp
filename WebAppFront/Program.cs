@@ -29,10 +29,6 @@ builder.Services.AddHttpClient<IMemberService, MemberService>(
     client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));  //Denne BasisUrl skal være den samme som i Launchsettings i BackendApi
 
 
-
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
