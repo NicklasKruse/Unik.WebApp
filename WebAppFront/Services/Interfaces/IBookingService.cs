@@ -1,11 +1,6 @@
-﻿using FrontConnectLibrary.Models.Booking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebAppFront.Services.Models.Booking;
 
-namespace FrontConnectLibrary.Interfaces
+namespace WebAppFront.Services.Interfaces
 {
     public interface IBookingService
     {
@@ -13,7 +8,7 @@ namespace FrontConnectLibrary.Interfaces
         Task<BookingQueryResultDto> GetBookingById(int id);
         Task EditBooking(BookingEditRequestDto bookingRequest);
         Task CreateBooking(BookingCreateRequestDto bookingRequest);
-        
+
         Task DeleteBooking(int id);
     }
 }

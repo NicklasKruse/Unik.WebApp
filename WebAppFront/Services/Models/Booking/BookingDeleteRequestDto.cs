@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontConnectLibrary.Models.Booking
+namespace WebAppFront.Services.Models.Booking
 {
-    public class BookingQueryResultDto
+    internal class BookingDeleteRequestDto
     {
     }
 }

@@ -1,8 +1,7 @@
-﻿using FrontConnectLibrary.Interfaces;
-using FrontConnectLibrary.Models.Member;
-using System.Net.Http.Json;
+﻿using WebAppFront.Services.Interfaces;
+using WebAppFront.Services.Models.Member;
 
-namespace FrontConnectLibrary.Services
+namespace WebAppFront.Services.Implementation
 {
     public class MemberService : IMemberService
     {
@@ -11,11 +10,11 @@ namespace FrontConnectLibrary.Services
         {
             _httpClient = httpClient;
         }
-        
+
         async Task IMemberService.CreateMember(MemberCreateRequestDto memberRequest)
         {
             var response = await _httpClient.PostAsJsonAsync("api/Member/create", memberRequest);
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 return;
             }
@@ -28,7 +27,7 @@ namespace FrontConnectLibrary.Services
         async Task IMemberService.DeleteMember(int id)
         {
             var response = await _httpClient.DeleteAsync($"api/Member/delete/{id}");
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 return;
             }
@@ -41,7 +40,7 @@ namespace FrontConnectLibrary.Services
         async Task IMemberService.EditMember(MemberEditRequestDto memberRequest)
         {
             var response = await _httpClient.PutAsJsonAsync("api/Member/edit", memberRequest);
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 return;
             }
@@ -58,7 +57,7 @@ namespace FrontConnectLibrary.Services
 
         async Task<MemberQueryResultDto> IMemberService.GetMemberById(int id)
         {
-           return await _httpClient.GetFromJsonAsync<MemberQueryResultDto>($"api/Member/{id}");
+            return await _httpClient.GetFromJsonAsync<MemberQueryResultDto>($"api/Member/{id}");
         }
     }
 }

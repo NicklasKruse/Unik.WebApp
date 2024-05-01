@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontConnectLibrary.Models.Booking
+namespace WebAppFront.Services.Models.Invitation
 {
-    internal class BookingDeleteRequestDto
+    public class InvitationCreateRequestDto
     {
     }
 }

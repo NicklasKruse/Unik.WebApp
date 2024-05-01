@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using FrontConnectLibrary.Services;
-using FrontConnectLibrary.Interfaces;
+using WebAppFront.Services.Interfaces;
 
 public class UploadModel : PageModel
 {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontConnectLibrary.Models.Invitation
+namespace WebAppFront.Services.Models.Booking
 {
-    public class InvitationEditRequestDto
+    public class BookingQueryResultDto
     {
     }
 }

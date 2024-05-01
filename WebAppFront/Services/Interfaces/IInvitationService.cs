@@ -1,11 +1,6 @@
-﻿using FrontConnectLibrary.Models.Invitation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebAppFront.Services.Models.Invitation;
 
-namespace FrontConnectLibrary.Interfaces
+namespace WebAppFront.Services.Interfaces
 {
     public interface IInvitationService
     {

@@ -1,12 +1,6 @@
-﻿using FrontConnectLibrary.Interfaces;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebAppFront.Services.Interfaces;
 
-namespace FrontConnectLibrary.Services
+namespace WebAppFront.Services.Implementation
 {
     public class FileUploadService : IFileUploadService
     {
@@ -64,6 +58,6 @@ namespace FrontConnectLibrary.Services
             }
             return (null, null);
         }
-      
+
     }
 }

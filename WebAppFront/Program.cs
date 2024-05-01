@@ -1,7 +1,8 @@
-using FrontConnectLibrary.Interfaces; //har project reference to library nu
-using FrontConnectLibrary.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WebAppFront.Services.Implementation;
+using WebAppFront.Services.Interfaces;
+using WebAppFront.Services.Services;
 using WebAppUserContext;
 
 

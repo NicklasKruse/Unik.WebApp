@@ -1,8 +1,7 @@
-using FrontConnectLibrary.Interfaces;
-using FrontConnectLibrary.Models;
-using FrontConnectLibrary.Models.Member;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebAppFront.Services.Interfaces;
+using WebAppFront.Services.Models.Member;
 
 namespace WebAppFront.Pages.Member
 {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontConnectLibrary.Interfaces
+namespace WebAppFront.Services.Interfaces
 {
     public interface IGetContentType
     {
         string GetType(string path);
-        Dictionary<string,string> GetMimeTypes();
+        Dictionary<string, string> GetMimeTypes();
     }
 }

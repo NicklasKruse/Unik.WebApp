@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontConnectLibrary.Models.Member
+namespace WebAppFront.Services.Models.Member
 {
     public class MemberEditRequestDto
     {

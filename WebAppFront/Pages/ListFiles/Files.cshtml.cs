@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using FrontConnectLibrary.Services;
-using FrontConnectLibrary.Interfaces;
+using WebAppFront.Services.Interfaces;
 
 public class FilesModel : PageModel
 {

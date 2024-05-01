@@ -1,11 +1,6 @@
-﻿using FrontConnectLibrary.Models.Member;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WebAppFront.Services.Models.Member;
 
-namespace FrontConnectLibrary.Interfaces
+namespace WebAppFront.Services.Interfaces
 {
     public interface IMemberService
     {
@@ -13,8 +8,8 @@ namespace FrontConnectLibrary.Interfaces
         Task<MemberQueryResultDto> GetMemberById(int id);
         Task EditMember(MemberEditRequestDto memberRequest);
         Task CreateMember(MemberCreateRequestDto memberRequest);
-        
+
         Task DeleteMember(int id);
-        
+
     }
 }

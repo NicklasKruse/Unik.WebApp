@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrontConnectLibrary.Interfaces
+namespace WebAppFront.Services.Interfaces
 {
     public interface IFileUploadService
     {
