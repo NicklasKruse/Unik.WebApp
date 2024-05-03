@@ -6,7 +6,7 @@ namespace Unik.Domain.Entities
 {
     public class Member : BaseEntity
     {
-        private readonly IDateTimeProvider _dateTimeProvider;
+
         internal Member() 
         {
             //EF
