@@ -9,7 +9,7 @@ namespace BackendApi.Controllers
 {
     [Route("api/[controller]")] //api/Member
     [ApiController]
-    public class MemberController : Controller
+    public class MemberController : ControllerBase
     {
         private readonly ICreateMemberCommand _createMemberCommand;
         private readonly IGetMemberQuery _getMemberQuery;

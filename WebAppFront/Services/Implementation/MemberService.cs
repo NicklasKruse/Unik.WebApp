@@ -1,4 +1,5 @@
-﻿using WebAppFront.Services.Interfaces;
+﻿using System.Net;
+using WebAppFront.Services.Interfaces;
 using WebAppFront.Services.Models.Member;
 
 namespace WebAppFront.Services.Implementation
@@ -17,6 +18,10 @@ namespace WebAppFront.Services.Implementation
             if (response.IsSuccessStatusCode)
             {
                 return;
+            }
+            else if (response.StatusCode == HttpStatusCode.NotFound) // Jeg kan ikke finde endpointen så jeg prøver at se med en exception
+            {
+                throw new Exception("Endpoint not found");
             }
             else
             {
@@ -53,7 +58,7 @@ namespace WebAppFront.Services.Implementation
         async Task<IEnumerable<MemberQueryResultDto>?> IMemberService.GetAllMember()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<MemberQueryResultDto>>("api/Member"); //Possible null, så har "?" efter IEnumerable<MemberQueryResultDto>
-        }
+        } // api/Member/getall??
 
         async Task<MemberQueryResultDto> IMemberService.GetMemberById(int id)
         {
