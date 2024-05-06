@@ -1,6 +1,6 @@
-﻿namespace WebAppFront.Services.Models.Item
+﻿namespace WebAppFront.Pages.Item
 {
-    public class ItemQueryResultDto
+    public class ItemIndexViewModel
     {
         public int Id { get; set; }
         public string Damage { get; set; }

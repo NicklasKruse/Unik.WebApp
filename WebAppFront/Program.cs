@@ -47,6 +47,14 @@ builder.Services.AddRazorPages();
 builder.Services.AddHttpClient<IMemberService, MemberService>(
     client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));  //Denne BasisUrl skal være den samme som i Launchsettings i BackendApi eller stemme overens med docker compose 
 
+builder.Services.AddHttpClient<IItemService, ItemService>(
+       client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));
+
+builder.Services.AddHttpClient<IBookingService, BookingService>(
+    client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));
+
+
+
 
 var app = builder.Build();
 

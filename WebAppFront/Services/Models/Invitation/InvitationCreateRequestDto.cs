@@ -8,5 +8,7 @@ namespace WebAppFront.Services.Models.Invitation
 {
     public class InvitationCreateRequestDto
     {
+        public DateTime Date { get; set; }
+        public string Description { get; set; }
     }
 }
