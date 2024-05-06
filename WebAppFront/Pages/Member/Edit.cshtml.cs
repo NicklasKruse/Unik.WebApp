@@ -13,13 +13,13 @@ namespace WebAppFront.Pages.Member
             _memberService = memberService;
         }
         [BindProperty] public EditMemberViewModel EditViewModel { get; set; }
-        public async Task<IActionResult> OnGet(int memberId)
+        public async Task<IActionResult> OnGet(int id)
         {
-            if(memberId == null)
+            if(id == null)
             {
                 return NotFound();
             }
-            var member = await _memberService.GetMemberById(memberId);
+            var member = await _memberService.GetMemberById(id);
 
             EditViewModel = new EditMemberViewModel
             {
@@ -29,6 +29,25 @@ namespace WebAppFront.Pages.Member
                 RowVersion = member.RowVersion
             };
             return Page();
+        }
+        public async Task<IActionResult> OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            var updatedMember = new Services.Models.Member.MemberEditRequestDto
+            {
+                Id = EditViewModel.Id,
+                Name = EditViewModel.Name,
+                Address = EditViewModel.Address,
+                RowVersion = EditViewModel.RowVersion
+            };
+
+            await _memberService.EditMember(updatedMember);
+
+            return RedirectToPage("./Index");
         }
     }
 }

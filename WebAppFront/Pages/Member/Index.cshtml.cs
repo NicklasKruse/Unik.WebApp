@@ -1,12 +1,32 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Member
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        private readonly IMemberService _memberService;
+
+        public IndexModel(IMemberService memberService)
         {
+            _memberService = memberService;
+        }
+
+        public List<MemberIndexViewModel> Members { get; set; } = new List<MemberIndexViewModel>();
+
+        public async Task OnGet()
+        {
+            var members = await _memberService.GetAllMember();
+            Members = members.Select(member => new MemberIndexViewModel
+            {
+                Id = member.Id,
+                Name = member.Name,
+                Address = member.Address,
+                RowVersion = member.RowVersion
+            }).ToList();
         }
     }
+
 }

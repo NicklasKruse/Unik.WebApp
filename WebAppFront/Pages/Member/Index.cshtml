@@ -3,18 +3,44 @@
 @{
 }
 <form method="post">
-    
-    <!-- Se alle medlemmer foreach(member in model) { model.name, model.address }  -->
+    <h1>Member List</h1>
+
+    @if (Model.Members.Any())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var member in Model.Members)
+                {
+                    <tr>
+                        <td>@member.Id</td>
+                        <td>@member.Name</td>
+                        <td>@member.Address</td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@member.Id">Edit</a>
+                            <a asp-page="./delete" asp-route-id="@member.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No members found.</p>
+    }
 
     <!--Authorize-->
     <a asp-page="./Create">Opret Medlem</a>
 
-    <a asp-page="./Edit">Rediger Medlem</a>
-
-    <a asp-page="./Delete">Slet Medlem</a>
-    <!---->
-    <a asp-page="./Details">Detaljer</a>
-
-    <a asp-page="./Index">Medlemmer</a>
-    
+   
+    <!-- <a asp-page="./Delete">Slet Medlem</a>-->
+    <!--<a asp-page="./Index">Medlemmer</a>-->
 </form>

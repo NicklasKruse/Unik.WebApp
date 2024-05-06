@@ -57,7 +57,7 @@ namespace WebAppFront.Services.Implementation
 
         async Task<IEnumerable<MemberQueryResultDto>?> IMemberService.GetAllMember()
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<MemberQueryResultDto>>("api/Member"); //Possible null, så har "?" efter IEnumerable<MemberQueryResultDto>
+            return await _httpClient.GetFromJsonAsync<IEnumerable<MemberQueryResultDto>>("api/Member/getall"); //Possible null, så har "?" efter IEnumerable<MemberQueryResultDto>
         } // api/Member/getall??
 
         async Task<MemberQueryResultDto> IMemberService.GetMemberById(int id)

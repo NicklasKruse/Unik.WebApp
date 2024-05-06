@@ -2,3 +2,31 @@
 @model WebAppFront.Pages.Member.EditModel
 @{
 }
+
+<h1>Edit Member</h1>
+
+@if (Model.EditViewModel != null)
+{
+    <form method="post">
+        <input type="hidden" asp-for="EditViewModel.Id" />
+        <input type="hidden" asp-for="EditViewModel.RowVersion" />
+
+        <div>
+            <label asp-for="EditViewModel.Name">Name:</label>
+            <input asp-for="EditViewModel.Name" />
+        </div>
+
+        <div>
+            <label asp-for="EditViewModel.Address">Address:</label>
+            <input asp-for="EditViewModel.Address" />
+        </div>
+
+        <button type="submit">Save</button>
+    </form>
+}
+else
+{
+    <p>Member not found.</p>
+}
+
+<a asp-page="./Index">Back to List</a>
