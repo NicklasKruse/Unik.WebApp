@@ -26,6 +26,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+    <ProjectReference Include="..\WebAppUserContext.Migrations\WebAppUserContext.Migrations.csproj" />
     <ProjectReference Include="..\WebAppUserContext\WebAppUserContext.csproj" />
   </ItemGroup>
 

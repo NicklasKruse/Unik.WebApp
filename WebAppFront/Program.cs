@@ -16,8 +16,26 @@ builder.Services.AddDbContext<WebAppUserDbContext>(options =>
     options.UseSqlServer(connectionString, x => x.MigrationsAssembly("WebAppUserContext.Migrations")));
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<WebAppUserDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+{
+    //Password
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequiredUniqueChars = 1;
+
+    // hvor mange forsøg har man osv.
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
+
+    // Sikrer at man har en unik email
+    options.User.RequireUniqueEmail = true;
+})
+.AddEntityFrameworkStores<WebAppUserDbContext>();
+
 
 builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 builder.Services.AddScoped<IGetContentType, GetContentType>();
