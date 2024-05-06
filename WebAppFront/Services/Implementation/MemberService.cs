@@ -4,6 +4,9 @@ using WebAppFront.Services.Models.Member;
 
 namespace WebAppFront.Services.Implementation
 {
+    /// <summary>
+    /// Frontend Services. Herfra kalder jeg API.
+    /// </summary>
     public class MemberService : IMemberService
     {
         private readonly HttpClient _httpClient;

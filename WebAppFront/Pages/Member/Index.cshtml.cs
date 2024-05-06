@@ -14,6 +14,8 @@ namespace WebAppFront.Pages.Member
             _memberService = memberService;
         }
 
+        [BindProperty]
+        public int DeleteMemberId { get; set; }
         public List<MemberIndexViewModel> Members { get; set; } = new List<MemberIndexViewModel>();
 
         public async Task OnGet()
@@ -26,6 +28,16 @@ namespace WebAppFront.Pages.Member
                 Address = member.Address,
                 RowVersion = member.RowVersion
             }).ToList();
+        }
+        /// <summary>
+        /// Delete 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            await _memberService.DeleteMember(id);
+            return RedirectToPage("./Index");
         }
     }
 
