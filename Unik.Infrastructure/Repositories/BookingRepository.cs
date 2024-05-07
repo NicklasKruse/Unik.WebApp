@@ -38,12 +38,12 @@ namespace Unik.Infrastructure.Repositories
 
         IEnumerable<BookingQueryResultDto> IBookingRepository.GetAllBooking()
         {
-            foreach (var booking in _context.Bookings.AsNoTracking())
+            foreach (var booking in _context.Bookings.Include(b => b.Item).AsNoTracking())
             {
                 yield return new BookingQueryResultDto
                 {
                     Id = booking.Id,
-                    Item = booking.Item,
+                    ItemId = booking.Item.Id,
                     UserId = booking.UserId,
                     StartDate = booking.StartDate,
                     EndDate = booking.EndDate
@@ -53,7 +53,7 @@ namespace Unik.Infrastructure.Repositories
 
         BookingQueryResultDto IBookingRepository.GetById(int id)
         {
-            var model = _context.Bookings.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            var model = _context.Bookings.Include(b => b.Item).AsNoTracking().FirstOrDefault(x => x.Id == id);
             if (model == null)
             {
                 throw new Exception("Booking not found");
@@ -61,7 +61,7 @@ namespace Unik.Infrastructure.Repositories
             return new BookingQueryResultDto
             {
                 Id = model.Id,
-                Item = model.Item,
+                ItemId = model.Item.Id,
                 UserId = model.UserId,
                 StartDate = model.StartDate,
                 EndDate = model.EndDate

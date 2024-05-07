@@ -27,7 +27,7 @@ namespace Unik.Application.Commands.Booking.Implementation
             {
                 _unitOfWork.BeginTransaction(IsolationLevel.Serializable);
                
-                var itemResult = _itemRepository.Load(dto.Item.Id);
+                var itemResult = _itemRepository.Load(dto.ItemId);
                 
                 var booking = new Domain.Entities.Booking(itemResult, dto.StartDate, dto.EndDate)
                 {

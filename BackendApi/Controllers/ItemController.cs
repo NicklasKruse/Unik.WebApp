@@ -82,6 +82,11 @@ namespace BackendApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// Get item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")] //api/Item/get/{id}
         public ActionResult<ItemQueryResultDto> Get(int id)
         {

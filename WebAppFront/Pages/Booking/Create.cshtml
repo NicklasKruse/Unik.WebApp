@@ -2,3 +2,28 @@
 @model WebAppFront.Pages.Booking.CreateModel
 @{
 }
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Damage</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Damage</td>
+                <td>@item.Description</td>
+                <td>
+                    <form method="post" asp-page-handler="BookItem" asp-route-id="@item.Id">
+                        <button type="submit" class="btn btn-primary">Book Item</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

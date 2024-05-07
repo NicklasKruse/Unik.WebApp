@@ -1,4 +1,5 @@
-﻿using WebAppFront.Services.Interfaces;
+﻿using System.Net;
+using WebAppFront.Services.Interfaces;
 using WebAppFront.Services.Models.Booking;
 
 namespace WebAppFront.Services.Implementation
@@ -18,6 +19,10 @@ namespace WebAppFront.Services.Implementation
             if (response.IsSuccessStatusCode)
             {
                 return;
+            }
+            else if (response.StatusCode == HttpStatusCode.NotFound) 
+            {
+                throw new Exception("Endpoint not found");
             }
             else
             {

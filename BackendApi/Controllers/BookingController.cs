@@ -9,7 +9,7 @@ namespace BackendApi.Controllers
 {
     [Route("api/[controller]")] //api/Booking
     [ApiController]
-    public class BookingController : Controller
+    public class BookingController : ControllerBase
     {
         private readonly IGetAllBookingQuery _getAllBookingQuery;
         private readonly IGetBookingQuery _getBookingQuery;

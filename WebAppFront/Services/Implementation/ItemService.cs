@@ -58,7 +58,7 @@ namespace WebAppFront.Services.Implementation
 
         async Task<ItemQueryResultDto> IItemService.GetItemById(int id)
         {
-            return await _httpClient.GetFromJsonAsync<ItemQueryResultDto>($"api/Item/getbyid/{id}");
+            return await _httpClient.GetFromJsonAsync<ItemQueryResultDto>($"api/Item/{id}");
         }
     }
 }

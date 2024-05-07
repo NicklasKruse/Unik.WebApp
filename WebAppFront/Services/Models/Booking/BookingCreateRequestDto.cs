@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAppFront.Services.Models.Item;
 
 namespace WebAppFront.Services.Models.Booking
 {
     public class BookingCreateRequestDto
     {
-        //public List<Item> Items { get; set; } //Opret nyt dto object til Item
-       // public string UserId { get; set; } //Tilknyt Userid
+        //public ItemQueryResultDto Item{ get; set; }
+        public int ItemId { get; set; } 
+        public string UserId { get; set; } //Tilknyt Userid
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
