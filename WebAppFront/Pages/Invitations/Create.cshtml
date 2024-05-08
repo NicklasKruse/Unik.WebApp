@@ -1,0 +1,49 @@
+﻿@page
+@model WebAppFront.Pages.Invitations.CreateModel
+@{
+}
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+<h1>Create Invitation</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="CreateInvitationVM.Date" class="form-label">Date</label>
+        <input asp-for="CreateInvitationVM.Date" class="form-control" />
+        <span asp-validation-for="CreateInvitationVM.Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreateInvitationVM.Description" class="form-label">Description</label>
+        <textarea asp-for="CreateInvitationVM.Description" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="CreateInvitationVM.Description" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

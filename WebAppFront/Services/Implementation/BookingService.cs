@@ -65,5 +65,17 @@ namespace WebAppFront.Services.Implementation
         {
             return await _httpClient.GetFromJsonAsync<BookingQueryResultDto>($"api/Booking/{id}");
         }
+
+
+        public async Task<IEnumerable<BookingQueryResultDto>> GetAllBookingsSortedByDate()
+        {
+            var bookings = await _httpClient.GetFromJsonAsync<IEnumerable<BookingQueryResultDto>>("api/Booking/getall");
+            return bookings.OrderBy(b => b.StartDate);
+        }
+        public async Task<IEnumerable<BookingQueryResultDto>> GetBookingsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var bookings = await _httpClient.GetFromJsonAsync<IEnumerable<BookingQueryResultDto>>("api/Booking/getall");
+            return bookings.Where(b => b.StartDate >= startDate && b.StartDate <= endDate);
+        }
     }
 }

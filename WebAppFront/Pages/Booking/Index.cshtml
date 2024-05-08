@@ -2,11 +2,46 @@
 @model WebAppFront.Pages.Booking.IndexModel
 @{
 }
-<p> Book et værelse eller lån et værktøj </p>
+<style>
+    .booking-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+    }
+</style>
+
+<p>Book et værelse eller lån et værktøj</p>
+
+<h1>All Bookings</h1>
+<div>
+    @foreach (var booking in Model.SortedBookings)
+    {
+        <div class="booking-box">
+            <p><strong>Item ID:</strong> @booking.ItemId</p>
+            <p><strong>User ID:</strong> @booking.UserId</p>
+            <p><strong>Date Range:</strong> @booking.StartDate - @booking.EndDate</p>
+        </div>
+    }
+</div>
+
+<h1>Bookings by Date Range</h1>
+<form method="post">
+    <input type="date" asp-for="SelectedStartDate" />
+    <input type="date" asp-for="SelectedEndDate" />
+    <button type="submit">Filter</button>
+</form>
+<div>
+    @if (Model.SelectedDateRangeBookings != null)
+    {
+        foreach (var booking in Model.SelectedDateRangeBookings)
+        {
+            <div class="booking-box">
+                <p><strong>Date Range:</strong> @booking.StartDate - @booking.EndDate</p>
+            </div>
+        }
+    }
+</div>
+
 <a asp-page="./Create">Opret Booking</a>
-
 <a asp-page="/Item/Index">Se alle items</a>
-
-
-
-

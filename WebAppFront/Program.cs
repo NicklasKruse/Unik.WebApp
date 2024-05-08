@@ -53,6 +53,8 @@ builder.Services.AddHttpClient<IItemService, ItemService>(
 builder.Services.AddHttpClient<IBookingService, BookingService>(
     client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));
 
+builder.Services.AddHttpClient<IInvitationService, InvitationService>(client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));
+
 
 
 
