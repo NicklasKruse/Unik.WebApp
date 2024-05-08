@@ -40,7 +40,7 @@ namespace WebAppFront.Pages.Booking
             var booking = new BookingCreateRequestDto
             {
                 ItemId = item.Id,
-                UserId = User.Identity!.Name!, 
+                UserId = User.Identity!.Name! ?? string.Empty, //Implementering af UserId mangler så ?? string.Empty er nødvendig 
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddDays(1),
             };
