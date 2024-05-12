@@ -9,7 +9,7 @@ using Unik.Domain.ValueObjects;
 
 namespace Unik.Infrastructure.DomainServices
 {
-    // In Unik.Infrastructure
+   
     public class BookingDomainService : IBookingDomainService
     {
         public void UpdateBookingWithItems(Booking booking, Item item)
