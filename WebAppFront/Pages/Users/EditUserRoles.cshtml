@@ -1,0 +1,23 @@
+﻿@page
+@model WebAppFront.Pages.Users.EditUserRolesModel
+@{
+    ViewData["Title"] = "Edit User Roles";
+}
+
+<h1>Edit User Roles</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="UserId" />
+
+    <h3>Select Roles:</h3>
+    @for (var i = 0; i < Model.AvailableRoles.Count; i++)
+    {
+        var role = Model.AvailableRoles[i];
+        <div>
+            <input type="checkbox" id="@role.Name" name="SelectedRoles" value="@role.Name" @(Model.SelectedRoles.Contains(role.Name) ? "checked" : "")>
+            <label for="@role.Name">@role.Name</label>
+        </div>
+    }
+
+    <button type="submit">Save</button>
+</form>

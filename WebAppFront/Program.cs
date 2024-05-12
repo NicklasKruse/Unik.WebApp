@@ -36,6 +36,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     // Sikrer at man har en unik email
     options.User.RequireUniqueEmail = true;
 })
+    .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<WebAppUserDbContext>();
 
 
