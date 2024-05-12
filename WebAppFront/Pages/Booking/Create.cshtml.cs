@@ -10,7 +10,6 @@ namespace WebAppFront.Pages.Booking
     {
         private readonly IBookingService _bookingService;
         private readonly IItemService _itemService;
-
         public CreateModel(IBookingService bookingService, IItemService itemService)
         {
             _bookingService = bookingService;
