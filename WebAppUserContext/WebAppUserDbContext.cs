@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAppUserContext
 {
-    public class WebAppUserDbContext : IdentityDbContext  // IdentityDbContext<IdentityUser>??
+    public class WebAppUserDbContext : IdentityDbContext<IdentityUser>
     {
         public WebAppUserDbContext(DbContextOptions<WebAppUserDbContext> options)
             : base(options)
