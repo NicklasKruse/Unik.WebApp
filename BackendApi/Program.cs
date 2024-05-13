@@ -20,7 +20,6 @@ using Unik.Application.Queries.Member;
 using Unik.Application.Queries.Member.Implementation;
 using Unik.Application.Repositories;
 using Unik.Application.Repository;
-using Unik.Domain.DomainServices;
 using Unik.Domain.Ínterfaces;
 using Unik.Infrastructure.DomainServices;
 using Unik.Infrastructure.Mappers;
