@@ -6,4 +6,12 @@
 <!-- Vis alle dokumenter -->
 
 <!-- Authorize level 3 -->
-<a asp-page="/UploadFile/Upload">Upload Dokument</a>
+@if (!User.IsInRole("Medlem"))
+{
+    <a asp-page="/UploadFile/Upload">Upload Dokument</a>
+}
+@if (User.IsInRole("Medlem"))
+{
+    <p>Du har ikke adgang til denne sides indhold</p>
+}
+

@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppFront.Services.Interfaces;
 
+[Authorize(Roles = "Formand, Bestyrelse")]
 public class UploadModel : PageModel
 {
     private readonly IFileUploadService _fileUploadService;
