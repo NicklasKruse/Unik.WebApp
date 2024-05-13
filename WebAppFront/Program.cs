@@ -39,6 +39,18 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<WebAppUserDbContext>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Formand", policy =>
+        policy.RequireRole("Formand"));
+
+    options.AddPolicy("Bestyrelse", policy =>
+        policy.RequireRole("Bestyrelse"));
+
+    options.AddPolicy("Medlem", policy =>
+        policy.RequireRole("Medlem"));
+});
+
 
 builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 builder.Services.AddScoped<IGetContentType, GetContentType>();

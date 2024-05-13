@@ -5,13 +5,16 @@ using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Member
 {
+    //[Authorize(Roles = "Formand")]
     public class IndexModel : PageModel
     {
         private readonly IMemberService _memberService;
+        private readonly IAuthorizationService _authorizationService;
 
-        public IndexModel(IMemberService memberService)
+        public IndexModel(IMemberService memberService, IAuthorizationService authorizationService)
         {
             _memberService = memberService;
+            _authorizationService = authorizationService;
         }
 
         [BindProperty]
@@ -36,6 +39,12 @@ namespace WebAppFront.Pages.Member
         /// <returns></returns>
         public async Task<IActionResult> OnPostDelete(int id)
         {
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, "Formand");
+            if (!authorizationResult.Succeeded)
+            {
+                return Forbid(); 
+            }
+
             await _memberService.DeleteMember(id);
             return RedirectToPage("./Index");
         }
