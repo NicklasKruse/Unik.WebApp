@@ -24,8 +24,12 @@ using Unik.Domain.Ínterfaces;
 using Unik.Infrastructure.DomainServices;
 using Unik.Infrastructure.Mappers;
 using Unik.Infrastructure.Repositories;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//StripeConfiguration.ApiKey = builder.Configuration["ApiKey"]; //Fra appsettings
+StripeConfiguration.ApiKey = "sk_test_51PFxPoRvZK1H133cM0lFy7iFRGHuDehPlIZvQL1U0CpCZiQErkXtcXkajGL5hyaP5JVWJlbxqRg3A90mESvVPuwZ00GdqHF09e"; 
 
 
 // Add services to the container.
@@ -42,9 +46,12 @@ builder.Services.AddDbContext<BackendDbContext>(
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(p =>
 {
-    var db = p.GetService<BackendDbContext>(); 
+    var db = p.GetService<BackendDbContext>();
     return new UnitOfWork(db);
 });
+
+
+ 
 
 //Service registrering Member
 builder.Services.AddScoped<IMemberRepository, MemberRepository>();
@@ -62,20 +69,18 @@ builder.Services.AddScoped<IGetBookingQuery, GetBookingQuery>();
 builder.Services.AddScoped<IEditBookingCommand, EditBookingCommand>();
 builder.Services.AddScoped<IDeleteBookingCommand, DeleteBookingCommand>();
 
-
-
 //Service registrering Invitation
 builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
 builder.Services.AddScoped<ICreateInvitationCommand, CreateInvitationCommand>();
 builder.Services.AddScoped<IGetInvitationQuery, GetInvitationQuery>();
 builder.Services.AddScoped<IGetAllInvitationQuery, GetAllInvitationQuery>();
-builder.Services.AddScoped<IEditInvitationCommand, EditInvitationCommand>();   
+builder.Services.AddScoped<IEditInvitationCommand, EditInvitationCommand>();
 builder.Services.AddScoped<IDeleteInvitationCommand, DeleteInvitationCommand>();
 
 // Items
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<IGetAllItemQuery, GetAllItemQuery>();
-builder.Services.AddScoped<IGetItemQuery, GetItemQuery>();  
+builder.Services.AddScoped<IGetItemQuery, GetItemQuery>();
 builder.Services.AddScoped<ICreateItemCommand, CreateItemCommand>();
 builder.Services.AddScoped<IEditItemCommand, EditItemCommand>();
 builder.Services.AddScoped<IDeleteItemCommand, DeleteItemCommand>();
@@ -83,7 +88,7 @@ builder.Services.AddScoped<IDeleteItemCommand, DeleteItemCommand>();
 
 builder.Services.AddScoped<IItemMapper, ItemMapper>();
 
-builder.Services.AddScoped<IBookingDomainService,BookingDomainService>();
+builder.Services.AddScoped<IBookingDomainService, BookingDomainService>();
 
 var app = builder.Build();
 

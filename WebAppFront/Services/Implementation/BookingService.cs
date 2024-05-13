@@ -18,6 +18,11 @@ namespace WebAppFront.Services.Implementation
             var response = await _httpClient.PostAsJsonAsync("api/Booking/create", bookingRequest);
             if (response.IsSuccessStatusCode)
             {
+                ChargeDepositRequestDto depositRequest = new ChargeDepositRequestDto
+                {
+                    Amount = 300m //Fixed pris for depositum
+                };
+                await ChargeDeposit(depositRequest);
                 return;
             }
             else if (response.StatusCode == HttpStatusCode.NotFound) 
@@ -76,6 +81,21 @@ namespace WebAppFront.Services.Implementation
         {
             var bookings = await _httpClient.GetFromJsonAsync<IEnumerable<BookingQueryResultDto>>("api/Booking/getall");
             return bookings.Where(b => b.StartDate >= startDate && b.StartDate <= endDate);
+        }
+        /// <summary>
+        /// Kald til backend for at opkræve depositum
+        /// </summary>
+        /// <param name="depositRequest"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task ChargeDeposit(ChargeDepositRequestDto depositRequest)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/Booking/chargeDeposit", depositRequest);
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Failed to charge deposit: {error}");
+            }
         }
     }
 }

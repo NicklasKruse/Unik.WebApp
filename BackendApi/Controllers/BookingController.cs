@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stripe;
 using System.Net.Mime;
 using Unik.Application.Commands.Booking;
 using Unik.Application.Commands.Booking.DTO;
@@ -98,6 +99,62 @@ namespace BackendApi.Controllers
            var bookings = _getAllBookingQuery.GetAllBooking();
             return bookings.ToList(); //ToList()
         }
+        /// <summary>
+        /// Kaos metode. Det er til stripe
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost("chargeDeposit")]
+        public async Task<IActionResult> ChargeDeposit([FromBody] ChargeDepositRequestDto dto)
+        {
+            try
+            {
+                //var pmservice = new PaymentMethodService();
+                //var paymentMethod = pmservice.Get("pm_1MqLiJLkdIwHu7ixUEgbFdYF");
 
+                var options = new PaymentIntentCreateOptions
+                {
+                    Amount = (long)(dto.Amount * 100), // amount * 100, det er i øre/cents
+                    Currency = "usd",
+                    PaymentMethod = "pm_card_visa",//Vælg payment method, det er fra stripes test kort
+                    Confirm = true,
+                    ReturnUrl = "http://localhost:8082/Booking",
+                };
+
+                var service = new PaymentIntentService();
+                PaymentIntent paymentIntent = await service.CreateAsync(options);
+
+                if (paymentIntent.Status != "succeeded")//For at undgå at opkræve flere gange
+                {
+
+                    var confirmOptions = new PaymentIntentConfirmOptions { };
+                    await service.ConfirmAsync(paymentIntent.Id, confirmOptions);
+                }
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to charge deposit");
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        //[HttpPost("chargeDeposit")]
+        //public async Task<IActionResult> ChargeDeposit([FromBody] ChargeDepositRequestDto dto)
+        //{
+        //    try
+        //    {
+        //        // Logic to charge deposit using Stripe
+        //        // This might involve creating a PaymentIntent and confirming it
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, "Failed to charge deposit");
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }

@@ -27,3 +27,55 @@
         }
     </tbody>
 </table>
+@* <body>
+    <script src="https://js.stripe.com/v3/"></script>
+</body>
+<form id="payment-form">
+    <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+    </div>
+
+    <!-- Used to display form errors. -->
+    <div id="card-error" role="alert"></div>
+
+    <button id="card-button" type="submit">Submit Payment</button>
+</form>
+<script>
+    var stripe = Stripe('pk_test_YourPublishableKey');
+    var elements = stripe.elements();
+
+    var card = elements.create('card');
+    card.mount('#card-element');
+</script>
+<script>
+    var form = document.getElementById('payment-form');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        stripe.createPaymentMethod({
+            type: 'card',
+            card: card,
+        }).then(function (result) {
+            if (result.error) {
+                // Inform the user if there was an error.
+                var errorElement = document.getElementById('card-error');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the paymentMethod.id to your server
+                fetch('/path/to/your/razor/page?handler=ChargeDeposit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        Amount: 500, // Example amount
+                        PaymentMethodId: result.paymentMethod.id,
+                    }),
+                }).then(function (response) {
+                    // Handle server response here
+                });
+            }
+        });
+    });
+</script> *@
