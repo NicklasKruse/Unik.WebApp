@@ -46,18 +46,28 @@
                 <p>@invitation.Description</p>
             </div>
             <div class="invitation-actions">
-                <a asp-page="./Edit" asp-route-id="@invitation.Id" class="btn btn-primary">Edit</a>
-                <form method="post" asp-page-handler="Delete" asp-route-id="@invitation.Id" onsubmit="return confirm('Are you sure you want to delete this invitation?')">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                
+                @if (User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
+                {
+                    <a asp-page="./Edit" asp-route-id="@invitation.Id" class="btn btn-primary">Edit</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@invitation.Id" onsubmit="return confirm('Are you sure you want to delete this invitation?')">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                }
+               
             </div>
         </div>
     }
 }
 else
 {
-    <p>No invitations found.</p>
+    <p>Der er ingen nuværende invitationer</p>
 }
 
 <!--Authorize-->
-<a asp-page="./Create" class="btn btn-success">Create Invitation</a>
+@if(User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
+{
+    <a asp-page="./Create" class="btn btn-success">Create Invitation</a>
+}
+
+

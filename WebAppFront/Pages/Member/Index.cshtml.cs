@@ -5,11 +5,11 @@ using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Member
 {
-    //[Authorize(Roles = "Formand")]
+    [Authorize(Roles = "Formand, Bestyrelse")]
     public class IndexModel : PageModel
     {
         private readonly IMemberService _memberService;
-        private readonly IAuthorizationService _authorizationService;
+        private readonly IAuthorizationService _authorizationService; //Service til autorisering af metoder
 
         public IndexModel(IMemberService memberService, IAuthorizationService authorizationService)
         {
@@ -39,7 +39,7 @@ namespace WebAppFront.Pages.Member
         /// <returns></returns>
         public async Task<IActionResult> OnPostDelete(int id)
         {
-            var authorizationResult = await _authorizationService.AuthorizeAsync(User, "Formand");
+            var authorizationResult = await _authorizationService.AuthorizeAsync(User, "Formand"); //Kun formand kan delete
             if (!authorizationResult.Succeeded)
             {
                 return Forbid(); 

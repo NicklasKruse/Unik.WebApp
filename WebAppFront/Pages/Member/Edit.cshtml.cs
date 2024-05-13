@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Member
 {
+    [Authorize(Roles = "Formand, Bestyrelse")]
     public class EditModel : PageModel
     {
         private readonly IMemberService _memberService;

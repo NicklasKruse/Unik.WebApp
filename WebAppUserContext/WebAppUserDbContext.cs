@@ -14,6 +14,10 @@ namespace WebAppUserContext
         {
             base.OnModelCreating(modelBuilder);
             SeedRoles(modelBuilder);
+
+            modelBuilder.Entity<IdentityUser>()
+            .Property(u => u.ConcurrencyStamp)
+            .HasDefaultValueSql("NEWID()"); // NEWID er en SQL funktion, der genererer en ny GUID. Det her er til ConcurrencyStamp, som er en del af IdentityUser.
         }
         /// <summary>
         /// Seeder roller til databasen

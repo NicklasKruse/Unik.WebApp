@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppFront.Services.Interfaces;
@@ -5,6 +6,7 @@ using WebAppFront.Services.Models.Member;
 
 namespace WebAppFront.Pages.Member
 {
+    [Authorize(Roles = "Formand, Bestyrelse")]
     public class CreateModel : PageModel
     {
         private readonly IMemberService _memberService;

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -5,6 +6,7 @@ using WebAppUserContext;
 
 namespace WebAppFront.Pages.Users
 {
+    [Authorize(Roles = "Formand")]
     public class IndexModel : PageModel
     {
         private readonly WebAppUserDbContext _dbContext;

@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAppFront.Pages.Users
 {
+    [Authorize(Roles = "Formand")]
     public class EditUserRolesModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;

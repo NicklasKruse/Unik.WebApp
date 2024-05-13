@@ -23,12 +23,16 @@
                         <td>@member.Id</td>
                         <td>@member.Name</td>
                         <td>@member.Address</td>
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@member.Id">Edit</a>
-                            <form method="post" asp-page-handler="Delete" asp-route-id="@member.Id" onsubmit="return confirm('Are you sure you want to delete this member?')">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
+                        @if(User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
+                        {
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@member.Id">Edit</a>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@member.Id" onsubmit="return confirm('Are you sure you want to delete this member?')">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        }
+                        
                     </tr>
                 }
             </tbody>
@@ -40,7 +44,11 @@
     }
 
     <!--Authorize-->
-    <a asp-page="./Create">Opret Medlem</a>
+    @if (User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
+    {
+        <a asp-page="./Create">Opret Medlem</a>
+    }
+    
 
    
     <!-- <a asp-page="./Delete">Slet Medlem</a>-->
