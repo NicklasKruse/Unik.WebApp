@@ -2,16 +2,10 @@
 @model WebAppFront.Pages.Documents.IndexModel
 @{
 }
-<!-- Authorize level 2 -->
-<!-- Vis alle dokumenter -->
 
-<!-- Authorize level 3 -->
-@if (!User.IsInRole("Medlem"))
+@if (User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
 {
     <a asp-page="/UploadFile/Upload">Upload Dokument</a>
 }
-@if (User.IsInRole("Medlem"))
-{
-    <p>Du har ikke adgang til denne sides indhold</p>
-}
+<a asp-page="/ListFiles/Files">Se Uploadede Filer</a>
 
