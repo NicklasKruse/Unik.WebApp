@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Item
 {
+    [Authorize(Roles = "Formand, Bestyrelse")]
     public class IndexModel : PageModel
     {
         private readonly IItemService itemService;

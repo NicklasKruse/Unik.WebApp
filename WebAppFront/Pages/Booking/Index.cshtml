@@ -44,4 +44,8 @@
 </div>
 
 <a asp-page="./Create">Opret Booking</a>
-<a asp-page="/Item/Index">Se alle items</a>
+@if (User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
+{
+    <a asp-page="/Item/Index">Se alle items</a>
+}
+
