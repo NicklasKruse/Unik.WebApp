@@ -25,6 +25,8 @@ using Unik.Infrastructure.DomainServices;
 using Unik.Infrastructure.Mappers;
 using Unik.Infrastructure.Repositories;
 using Stripe;
+using Unik.Application.Commands.MemberWithAddress;
+using Unik.Application.Commands.MemberWithAddress.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,6 +86,10 @@ builder.Services.AddScoped<IGetItemQuery, GetItemQuery>();
 builder.Services.AddScoped<ICreateItemCommand, CreateItemCommand>();
 builder.Services.AddScoped<IEditItemCommand, EditItemCommand>();
 builder.Services.AddScoped<IDeleteItemCommand, DeleteItemCommand>();
+
+
+builder.Services.AddScoped<IMemberWithAddressRepository, MemberWithAddressRepository>();
+builder.Services.AddScoped<ICreateMemberWithAddressCommand, CreateMemberWithAddressCommand>();
 
 
 builder.Services.AddScoped<IItemMapper, ItemMapper>();
