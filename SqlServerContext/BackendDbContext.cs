@@ -15,9 +15,9 @@ namespace SqlServerContext
         public DbSet<Member> Memberships { get; set; }
         //public DbSet<Room> Rooms { get; set; }
         //public DbSet<Tool> Tools { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        //public DbSet<Address> Addresses { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
-
+        public DbSet<MemberWithAddress> MemberWithAddress { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
