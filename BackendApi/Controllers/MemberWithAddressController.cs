@@ -23,7 +23,7 @@ namespace BackendApi.Controllers
                 _createMemberWithAddressCommand.CreateMemberWithAddress(dto);
                 return Ok();
             }
-            catch
+            catch(Exception)
             {
                 return BadRequest();
             }

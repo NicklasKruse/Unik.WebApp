@@ -18,10 +18,10 @@ namespace Unik.Infrastructure.Repositories
             _context = context;
         }
 
-        void IMemberWithAddressRepository.CreateMemberWithAddress(MemberWithAddress foreningsMedlem)
+        async Task IMemberWithAddressRepository.CreateMemberWithAddress(MemberWithAddress foreningsMedlem)
         {
-            _context.Add(foreningsMedlem);
-            _context.SaveChangesAsync();
+            await _context.AddAsync(foreningsMedlem);
+            await _context.SaveChangesAsync();
         }
     }
 }

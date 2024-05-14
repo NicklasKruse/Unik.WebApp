@@ -9,6 +9,6 @@ namespace Unik.Application.Repositories
 {
     public interface IMemberWithAddressRepository
     {
-        void CreateMemberWithAddress(MemberWithAddress foreningsMedlem);
+        Task CreateMemberWithAddress(MemberWithAddress foreningsMedlem);
     }
 }

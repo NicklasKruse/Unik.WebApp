@@ -4,6 +4,6 @@ namespace Unik.Application.Commands.MemberWithAddress
 {
     public interface ICreateMemberWithAddressCommand
     {
-        void CreateMemberWithAddress(MemberWithAddressRequestDto createMemberWithAddressDto);
+        Task CreateMemberWithAddress(MemberWithAddressRequestDto createMemberWithAddressDto);
     }
 }
