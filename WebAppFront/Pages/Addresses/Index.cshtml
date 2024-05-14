@@ -1,0 +1,424 @@
+﻿@page
+@model WebAppFront.Pages.Addresses.IndexModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Autocomplete</title>
+    <style>
+        .autocomplete-container {
+            position: relative;
+            width: 100%;
+            max-width: 30em;
+            margin-bottom: 1em;
+        }
+
+            .autocomplete-container input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+        .dawa-autocomplete-suggestions {
+            margin: 0.3em 0 0 0;
+            padding: 0;
+            text-align: left;
+            border-radius: 0.3125em;
+            background: #fcfcfc;
+            box-shadow: 0 0.0625em 0.15625em rgba(0,0,0,.15);
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+            .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion {
+                margin: 0;
+                list-style: none;
+                cursor: pointer;
+                padding: 0.4em 0.6em;
+                color: #333;
+                border: 0.0625em solid #ddd;
+                border-bottom-width: 0;
+            }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:first-child {
+                    border-top-left-radius: inherit;
+                    border-top-right-radius: inherit;
+                }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:last-child {
+                    border-bottom-left-radius: inherit;
+                    border-bottom-right-radius: inherit;
+                    border-bottom-width: 0.0625em;
+                }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion.dawa-selected,
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:hover {
+                    background: #f0f0f0;
+                }
+
+        .input-container {
+            margin-bottom: 1em;
+        }
+
+            .input-container label {
+                display: block;
+                margin-bottom: 0.5em;
+            }
+
+            .input-container input {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5em;
+                border: 1px solid #ccc;
+                border-radius: 0.3125em;
+            }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <div class="input-container">
+            <label asp-for="ForeningsMedlem.FirstName">First Name</label>
+            <input asp-for="ForeningsMedlem.FirstName" type="text" id="first-name" name="ForeningsMedlem.FirstName">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="ForeningsMedlem.LastName">Last Name</label>
+            <input asp-for="ForeningsMedlem.LastName" type="text" id="last-name" name="ForeningsMedlem.LastName">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="ForeningsMedlem.Email">Email</label>
+            <input asp-for="ForeningsMedlem.Email" type="email" id="email" name="ForeningsMedlem.Email">
+        </div>
+
+        <div class="autocomplete-container">
+            <label for="dawa-autocomplete-input">Address</label>
+            <input type="search" id="dawa-autocomplete-input">
+            <!-- Suggestions will appear here -->
+        </div>
+
+        <div class="input-container hidden">
+            <label asp-for="Address.Street">Street</label>
+            <input asp-for="Address.Street" type="text" id="street" name="Address.Street" readonly>
+        </div>
+
+        <div class="input-container hidden">
+            <label asp-for="Address.ZipCode">Zip</label>
+            <input asp-for="Address.ZipCode" type="text" id="zip" name="Address.ZipCode" readonly>
+        </div>
+
+        <div class="input-container hidden">
+            <label asp-for="Address.City">City</label>
+            <input asp-for="Address.City" type="text" id="city" name="Address.City" readonly>
+        </div>
+
+        <div class="input-container hidden">
+            <label asp-for="Address.Country">Country</label>
+            <input asp-for="Address.Country" type="text" id="country" name="Address.Country" value="Denmark" readonly>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="https://cdn.dataforsyningen.dk/dawa/assets/dawa-autocomplete2/1.0.2/dawa-autocomplete2.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            dawaAutocomplete.dawaAutocomplete(document.getElementById('dawa-autocomplete-input'), {
+                select: function (selected) {
+                    console.log('Valgt adresse: ' + selected.tekst);
+                    document.getElementById('street').value = selected.data.vejnavn;
+                    document.getElementById('zip').value = selected.data.postnr;
+                    document.getElementById('city').value = selected.data.postnrnavn;
+
+                    document.getElementById('country').value = "Denmark";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+@* @page
+@model WebAppFront.Pages.Addresses.IndexModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Autocomplete</title>
+    <style>
+        .autocomplete-container {
+            position: relative;
+            width: 100%;
+            max-width: 30em;
+            margin-bottom: 1em;
+        }
+
+            .autocomplete-container input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+        .dawa-autocomplete-suggestions {
+            margin: 0.3em 0 0 0;
+            padding: 0;
+            text-align: left;
+            border-radius: 0.3125em;
+            background: #fcfcfc;
+            box-shadow: 0 0.0625em 0.15625em rgba(0,0,0,.15);
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+            .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion {
+                margin: 0;
+                list-style: none;
+                cursor: pointer;
+                padding: 0.4em 0.6em;
+                color: #333;
+                border: 0.0625em solid #ddd;
+                border-bottom-width: 0;
+            }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:first-child {
+                    border-top-left-radius: inherit;
+                    border-top-right-radius: inherit;
+                }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:last-child {
+                    border-bottom-left-radius: inherit;
+                    border-bottom-right-radius: inherit;
+                    border-bottom-width: 0.0625em;
+                }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion.dawa-selected,
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:hover {
+                    background: #f0f0f0;
+                }
+
+        .input-container {
+            margin-bottom: 1em;
+        }
+
+            .input-container label {
+                display: block;
+                margin-bottom: 0.5em;
+            }
+
+            .input-container input {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5em;
+                border: 1px solid #ccc;
+                border-radius: 0.3125em;
+            }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <div class="input-container">
+            <label asp-for="ForeningsMedlem.FirstName">First Name</label>
+            <input asp-for="ForeningsMedlem.FirstName" type="text" id="first-name" name="first-name">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="ForeningsMedlem.LastName">Last Name</label>
+            <input asp-for="ForeningsMedlem.LastName" type="text" id="last-name" name="last-name">
+        </div>
+
+        <div class="input-container">
+            <label asp-for="ForeningsMedlem.Email">Email</label>
+            <input asp-for="ForeningsMedlem.Email" type="email" id="email" name="email">
+        </div>
+
+        <div class="autocomplete-container">
+            <label for="dawa-autocomplete-input">Address</label>
+            <input type="search" id="dawa-autocomplete-input">
+            <!-- Suggestions will appear here -->
+        </div>
+
+        <div class="input-container hidden">
+            <label asp-for="Address.Street">Street</label>
+            <input asp-for="Address.Street" type="text" id="street" name="street" readonly>
+        </div>
+
+        <div class="input-container hidden">
+            <label asp-for="Address.ZipCode">Zip</label>
+            <input asp-for="Address.ZipCode" type="text" id="zip" name="zip" readonly>
+        </div>
+
+        <div class="input-container hidden">
+            <label asp-for="Address.City">City</label>
+            <input asp-for="Address.City" type="text" id="city" name="city" readonly>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="https://cdn.dataforsyningen.dk/dawa/assets/dawa-autocomplete2/1.0.2/dawa-autocomplete2.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            dawaAutocomplete.dawaAutocomplete(document.getElementById('dawa-autocomplete-input'), {
+                select: function (selected) {
+                    console.log('Valgt adresse: ' + selected.tekst);
+                    document.getElementById('street').value = selected.data.vejnavn;
+                    document.getElementById('zip').value = selected.data.postnr;
+                    document.getElementById('city').value = selected.data.postnrnavn;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+ *@
+
+
+
+
+
+
+@* @page
+@model WebAppFront.Pages.Addresses.IndexModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Autocomplete</title>
+    <style>
+        .autocomplete-container {
+            /* relative position for at de absolut positionerede forslag får korrekt placering.*/
+            position: relative;
+            width: 100%;
+            max-width: 30em;
+            margin-bottom: 1em;
+        }
+
+            .autocomplete-container input {
+                /* Både input og forslag får samme bredde som omkringliggende DIV */
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+        .dawa-autocomplete-suggestions {
+            margin: 0.3em 0 0 0;
+            padding: 0;
+            text-align: left;
+            border-radius: 0.3125em;
+            background: #fcfcfc;
+            box-shadow: 0 0.0625em 0.15625em rgba(0,0,0,.15);
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+            .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion {
+                margin: 0;
+                list-style: none;
+                cursor: pointer;
+                padding: 0.4em 0.6em;
+                color: #333;
+                border: 0.0625em solid #ddd;
+                border-bottom-width: 0;
+            }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:first-child {
+                    border-top-left-radius: inherit;
+                    border-top-right-radius: inherit;
+                }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:last-child {
+                    border-bottom-left-radius: inherit;
+                    border-bottom-right-radius: inherit;
+                    border-bottom-width: 0.0625em;
+                }
+
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion.dawa-selected,
+                .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:hover {
+                    background: #f0f0f0;
+                }
+
+        .input-container {
+            margin-bottom: 1em;
+        }
+
+            .input-container label {
+                display: block;
+                margin-bottom: 0.5em;
+            }
+
+            .input-container input {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5em;
+                border: 1px solid #ccc;
+                border-radius: 0.3125em;
+            }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-name">
+    </div>
+
+    <div class="input-container">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name">
+    </div>
+
+    <div class="input-container">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+    </div>
+
+    <div class="autocomplete-container">
+        <label for="dawa-autocomplete-input">Address</label>
+        <input type="search" id="dawa-autocomplete-input">
+        <!-- Suggestions will appear here -->
+    </div>
+
+    <script src="https://cdn.dataforsyningen.dk/dawa/assets/dawa-autocomplete2/1.0.2/dawa-autocomplete2.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            dawaAutocomplete.dawaAutocomplete(document.getElementById('dawa-autocomplete-input'), {
+                select: function (selected) {
+                    console.log('Valgt adresse: ' + selected.tekst);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+ *@
