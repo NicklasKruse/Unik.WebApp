@@ -1,15 +1,7 @@
 ﻿using Shared;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using Unik.Application.Commands.Member.DTO;
 using Unik.Application.Repositories;
-using Unik.Domain.Ínterfaces;
-using Unik.Domain.ValueObjects;
 
 namespace Unik.Application.Commands.Member.Implementation
 {

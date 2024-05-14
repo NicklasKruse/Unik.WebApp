@@ -22,16 +22,15 @@ namespace WebAppFront.Pages.Addresses
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                foreach (var error in errors)
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
-                return Page();
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    var errors = ModelState.Values.SelectMany(v => v.Errors);
+            //    foreach (var error in errors)
+            //    {
+            //        Console.WriteLine(error.ErrorMessage);
+            //    }
+            //    return Page();
+            //}
             var medlem = new ForeningsMedlemCreateRequestDto
             {
                 FirstName = ForeningsMedlem.FirstName,

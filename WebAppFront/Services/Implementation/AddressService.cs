@@ -14,7 +14,7 @@ namespace WebAppFront.Services.Implementation
 
         public async Task CreateMemberWithAddress(ForeningsMedlemCreateRequestDto foreningsMedlem)
         {
-            var response = await _httpClient.PostAsJsonAsync("api/Address/create", foreningsMedlem);
+            var response = await _httpClient.PostAsJsonAsync("api/MemberWithAddress/create", foreningsMedlem);
             if (response.IsSuccessStatusCode)
             {
                 return;
