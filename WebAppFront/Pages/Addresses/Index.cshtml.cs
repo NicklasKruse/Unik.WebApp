@@ -20,7 +20,7 @@ namespace WebAppFront.Pages.Addresses
         [BindProperty]
         public AddressViewModel Address { get; set; } = new AddressViewModel();
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             //if (!ModelState.IsValid)
             //{
@@ -45,7 +45,7 @@ namespace WebAppFront.Pages.Addresses
                 }
             };
 
-            _AddressService.CreateMemberWithAddress(medlem);
+            await _AddressService.CreateMemberWithAddress(medlem);
             return RedirectToPage("Index");
         }
 

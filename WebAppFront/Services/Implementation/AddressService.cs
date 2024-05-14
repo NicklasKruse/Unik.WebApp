@@ -12,7 +12,7 @@ namespace WebAppFront.Services.Implementation
             _httpClient = httpClient;
         }
 
-        public async Task CreateMemberWithAddress(ForeningsMedlemCreateRequestDto foreningsMedlem)
+        async Task IAddressService.CreateMemberWithAddress(ForeningsMedlemCreateRequestDto foreningsMedlem)
         {
             var response = await _httpClient.PostAsJsonAsync("api/MemberWithAddress/create", foreningsMedlem);
             if (response.IsSuccessStatusCode)

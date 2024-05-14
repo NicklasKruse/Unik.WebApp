@@ -15,17 +15,17 @@ namespace BackendApi.Controllers
             _createMemberWithAddressCommand = createMemberWithAddressCommand;
         }
 
-        [HttpPost("create")]
-        public IActionResult Create(MemberWithAddressRequestDto dto)
+        [HttpPost("create")] //api/MemberWithAddress/create
+        public async Task<IActionResult> Create(MemberWithAddressRequestDto dto)
         {
             try
             {
-                _createMemberWithAddressCommand.CreateMemberWithAddress(dto);
+                await _createMemberWithAddressCommand.CreateMemberWithAddress(dto);
                 return Ok();
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
 
         }

@@ -23,12 +23,13 @@ namespace Unik.Application.Commands.MemberWithAddress.Implementation
             {
                 unitOfWork.BeginTransaction(IsolationLevel.Serializable);
 
-                var address = new Domain.ValueObjects.Address();
-                address.Street = createMemberWithAddressDto.Address.Street;
-                address.City = createMemberWithAddressDto.Address.City;
-                address.ZipCode = createMemberWithAddressDto.Address.ZipCode;
-                address.Country = createMemberWithAddressDto.Address.Country;
-
+                var address = new Domain.ValueObjects.Address
+                {
+                    Street = createMemberWithAddressDto.Address.Street,
+                    City = createMemberWithAddressDto.Address.City,
+                    ZipCode = createMemberWithAddressDto.Address.ZipCode,
+                    Country = createMemberWithAddressDto.Address.Country
+                };
 
                 var memberWithAddress = new Domain.Entities.MemberWithAddress(createMemberWithAddressDto.FirstName, createMemberWithAddressDto.LastName, createMemberWithAddressDto.Email, address);
                 await _memberWithAddressRepository.CreateMemberWithAddress(memberWithAddress);
@@ -36,8 +37,8 @@ namespace Unik.Application.Commands.MemberWithAddress.Implementation
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 unitOfWork.Rollback();
-                throw ex;
             }
         }
     }

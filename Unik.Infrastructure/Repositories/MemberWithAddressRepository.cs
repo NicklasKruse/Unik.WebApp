@@ -20,8 +20,15 @@ namespace Unik.Infrastructure.Repositories
 
         async Task IMemberWithAddressRepository.CreateMemberWithAddress(MemberWithAddress foreningsMedlem)
         {
-            await _context.AddAsync(foreningsMedlem);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Add(foreningsMedlem);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
