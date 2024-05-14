@@ -118,7 +118,7 @@ namespace BackendApi.Controllers
                     Currency = "usd",
                     PaymentMethod = "pm_card_visa",//Vælg payment method, det er fra stripes test kort
                     Confirm = true,
-                    ReturnUrl = "http://localhost:8082/Booking",
+                    ReturnUrl = "http://localhost:8082/Booking", //Den skal have en url, hvor den skal sende brugeren hen efter betalingen er gennemført
                 };
 
                 var service = new PaymentIntentService();

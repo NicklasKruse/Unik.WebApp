@@ -49,6 +49,8 @@ builder.Services.AddAuthorization(options =>
 
     options.AddPolicy("Medlem", policy =>
         policy.RequireRole("Medlem"));
+
+    options.AddPolicy("Admin", policyBuilder => policyBuilder.RequireClaim("Admin"));
 });
 
 
@@ -56,7 +58,20 @@ builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 builder.Services.AddScoped<IGetContentType, GetContentType>();
 
 builder.Services.AddSwaggerGen();
-builder.Services.AddRazorPages();
+
+builder.Services.AddRazorPages(options =>
+{
+    //sikre at man skal være logged in for at kunne tilgå mapper. 
+    options.Conventions.AuthorizeFolder("/Users");
+    options.Conventions.AuthorizeFolder("/Item");
+    options.Conventions.AuthorizeFolder("/Booking");
+    options.Conventions.AuthorizeFolder("/Invitations");
+    options.Conventions.AuthorizeFolder("/Member");
+    options.Conventions.AuthorizeFolder("/UploadFile");
+    options.Conventions.AuthorizeFolder("/ListFiles");
+    options.Conventions.AuthorizeFolder("/Documents");
+    options.Conventions.AuthorizeFolder("/Messages");
+});
 
 
 builder.Services.AddHttpClient<IMemberService, MemberService>(
