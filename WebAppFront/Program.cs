@@ -61,7 +61,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddRazorPages(options =>
 {
-    sikre at man skal v�re logged in for at kunne tilg� mapper.
+    //sikre at man skal v�re logged in for at kunne tilg� mapper.
     options.Conventions.AuthorizeFolder("/Users");
     options.Conventions.AuthorizeFolder("/Item");
     options.Conventions.AuthorizeFolder("/Booking");
