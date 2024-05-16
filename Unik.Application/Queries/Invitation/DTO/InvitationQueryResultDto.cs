@@ -6,6 +6,7 @@
         public string? Description { get; set; }
         public DateTime Date { get; set; }
         public byte[] RowVersion { get; set; }
+        public string CreatedBy { get; set; }
         //public List<InvitationAcceptanceQueryResultDto> Acceptances { get; set; } = new List<InvitationAcceptanceQueryResultDto>();
     }
 }

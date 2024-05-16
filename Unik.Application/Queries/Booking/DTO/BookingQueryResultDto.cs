@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unik.Domain.ValueObjects;
-
-namespace Unik.Application.Queries.Booking.DTO
+﻿namespace Unik.Application.Queries.Booking.DTO
 {
     public class BookingQueryResultDto
     {
@@ -16,6 +9,8 @@ namespace Unik.Application.Queries.Booking.DTO
         public string UserId { get; set; } 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime DateOfCreation { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
     }
 }

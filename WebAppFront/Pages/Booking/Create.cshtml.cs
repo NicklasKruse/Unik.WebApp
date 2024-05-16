@@ -39,9 +39,12 @@ namespace WebAppFront.Pages.Booking
             var booking = new BookingCreateRequestDto
             {
                 ItemId = item.Id,
-                UserId = User.Identity!.Name! ?? string.Empty, //Implementering af UserId mangler så ?? string.Empty er nødvendig 
+                UserId = string.Empty, // string.Empty er nødvendig. Var tænkt som createdby. Slet hvis har tid
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddDays(1),
+                DateOfCreation = DateTime.Now,
+                CreatedBy = User.Identity.Name,
+
             };
             await _bookingService.CreateBooking(booking);
             return RedirectToPage("Index");

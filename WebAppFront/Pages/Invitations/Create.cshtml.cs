@@ -32,7 +32,9 @@ namespace WebAppFront.Pages.Invitations
             var invitation = new InvitationCreateRequestDto
             {
                 Date = CreateInvitationVM.Date,
-                Description = CreateInvitationVM.Description
+                Description = CreateInvitationVM.Description,
+                CreatedBy = User.Identity.Name,
+                DateOfCreation = DateTime.Now,
             };
 
             await _invitationService.CreateInvitation(invitation);
