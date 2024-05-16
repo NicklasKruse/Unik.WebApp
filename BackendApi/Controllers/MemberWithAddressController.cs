@@ -29,6 +29,7 @@ namespace BackendApi.Controllers
             }
 
         }
+        [HttpGet] //Er nød til at have en get her for ellers vil swagger ikke være med
         public IActionResult Index()
         {
             return View();

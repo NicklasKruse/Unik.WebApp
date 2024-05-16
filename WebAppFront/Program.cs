@@ -28,7 +28,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 
-    // hvor mange forsøg har man osv.
+    // hvor mange forsï¿½g har man osv.
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
@@ -61,7 +61,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddRazorPages(options =>
 {
-    //sikre at man skal være logged in for at kunne tilgå mapper. 
+    sikre at man skal vï¿½re logged in for at kunne tilgï¿½ mapper.
     options.Conventions.AuthorizeFolder("/Users");
     options.Conventions.AuthorizeFolder("/Item");
     options.Conventions.AuthorizeFolder("/Booking");
@@ -73,9 +73,9 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizeFolder("/Messages");
 });
 
-
+// typed client
 builder.Services.AddHttpClient<IMemberService, MemberService>(
-    client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));  //Denne BasisUrl skal være den samme som i Launchsettings i BackendApi eller stemme overens med docker compose 
+    client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));  //Denne BasisUrl skal vï¿½re den samme som i Launchsettings i BackendApi eller stemme overens med docker compose 
 
 builder.Services.AddHttpClient<IItemService, ItemService>(
        client => client.BaseAddress = new Uri(builder.Configuration["BasisUrl"]));
