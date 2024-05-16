@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("WebAppUserConnection") ?? throw new InvalidOperationException("Connection string 'WebAppUserConnection' not found.");
 
-//docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=nikr54684!" --name uniksqlserver -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+//docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=nikr54684!" --name uniksqlserver -p 1434:1433 -d mcr.microsoft.com/mssql/server:2022-latest
 
 //Add-Migration InitialMigration -Context WebAppUserDbContext -Project WebAppUserContext.Migrations
 builder.Services.AddDbContext<WebAppUserDbContext>(options =>

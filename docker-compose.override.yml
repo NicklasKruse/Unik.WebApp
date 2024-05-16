@@ -14,14 +14,14 @@ services:
  webappfront:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      -  ConnectionStrings__WebAppUserConnection=Server=host.docker.internal,1433;Database=uniksqlserver;User=sa;Password=nikr54684!;TrustServerCertificate=True; # Sqlserver
+      # - ConnectionStrings__WebAppUserConnection=Server=host.docker.internal,1433;Database=uniksqlserver;User=sa;Password=nikr54684!;TrustServerCertificate=True; # Sqlserver
     ports:
       - "8082:8080" 
       - "8083:8081" 
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-    depends_on:
-      - sqlserver # Sqlserver
+    # depends_on:
+    #   - sqlserver # Sqlserver
   
   

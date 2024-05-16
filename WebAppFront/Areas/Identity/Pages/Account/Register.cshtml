@@ -4,64 +4,187 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        .autocomplete-container {
+            position: relative;
+            width: 100%;
+            max-width: 30em;
+            margin-bottom: 1em;
+        }
 
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
+            .autocomplete-container input {
+                width: 100%;
+                box-sizing: border-box;
             }
-        </section>
-    </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+        .dawa-autocomplete-suggestions {
+            margin: 0.3em 0 0 0;
+            padding: 0;
+            text-align: left;
+            border-radius: 0.3125em;
+            background: #fcfcfc;
+            box-shadow: 0 0.0625em 0.15625em rgba(0,0,0,.15);
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .dawa-autocomplete-suggestion {
+            margin: 0;
+            list-style: none;
+            cursor: pointer;
+            padding: 0.4em 0.6em;
+            color: #333;
+            border: 0.0625em solid #ddd;
+            border-bottom-width: 0;
+        }
+
+            .dawa-autocomplete-suggestion:first-child {
+                border-top-left-radius: inherit;
+                border-top-right-radius: inherit;
+            }
+
+            .dawa-autocomplete-suggestion:last-child {
+                border-bottom-left-radius: inherit;
+                border-bottom-right-radius: inherit;
+                border-bottom-width: 0.0625em;
+            }
+
+            .dawa-autocomplete-suggestion.dawa-selected,
+            .dawa-autocomplete-suggestion:hover {
+                background: #f0f0f0;
+            }
+
+        .input-container {
+            margin-bottom: 1em;
+        }
+
+            .input-container label {
+                display: block;
+                margin-bottom: 0.5em;
+            }
+
+            .input-container input {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5em;
+                border: 1px solid #ccc;
+                border-radius: 0.3125em;
+            }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Create a new account.</h2>
+                <hr />
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.Email">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.Password">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirm password" />
+                        <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+
+
+
+
+                    <div class="input-container">
+                        <label asp-for="ForeningsMedlem.FirstName">First Name</label>
+                        <input asp-for="ForeningsMedlem.FirstName" type="text" id="first-name" name="ForeningsMedlem.FirstName">
+                    </div>
+
+                    <div class="input-container">
+                        <label asp-for="ForeningsMedlem.LastName">Last Name</label>
+                        <input asp-for="ForeningsMedlem.LastName" type="text" id="last-name" name="ForeningsMedlem.LastName">
+                    </div>
+
+                    @* <div class="input-container">
+                    <label asp-for="ForeningsMedlem.Email">Email</label>
+                    <input asp-for="ForeningsMedlem.Email" type="email" id="email" name="ForeningsMedlem.Email">
+                    </div> *@
+
+                    <div class="autocomplete-container">
+                        <label for="dawa-autocomplete-input">Address</label>
+                        <input type="search" id="dawa-autocomplete-input">
+                    </div>
+
+                    <div class="input-container hidden">
+                        <label asp-for="Address.Street">Street</label>
+                        <input asp-for="Address.Street" type="text" id="street" name="Address.Street" readonly>
+                    </div>
+
+                    <div class="input-container hidden">
+                        <label asp-for="Address.ZipCode">Zip</label>
+                        <input asp-for="Address.ZipCode" type="text" id="zip" name="Address.ZipCode" readonly>
+                    </div>
+
+                    <div class="input-container hidden">
+                        <label asp-for="Address.City">City</label>
+                        <input asp-for="Address.City" type="text" id="city" name="Address.City" readonly>
+                    </div>
+
+                    <div class="input-container hidden">
+                        <label asp-for="Address.Country">Country</label>
+                        <input asp-for="Address.Country" type="text" id="country" name="Address.Country" value="Denmark" readonly>
+                    </div>
+
+                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h3>Personal Information</h3>
+                <hr />
+                <form method="post">
+                    
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.dataforsyningen.dk/dawa/assets/dawa-autocomplete2/1.0.2/dawa-autocomplete2.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            dawaAutocomplete.dawaAutocomplete(document.getElementById('dawa-autocomplete-input'), {
+                select: function (selected) {
+                    console.log('Selected address: ' + selected.tekst);
+                    document.getElementById('street').value = selected.data.vejnavn;
+                    document.getElementById('zip').value = selected.data.postnr;
+                    document.getElementById('city').value = selected.data.postnrnavn;
+                    document.getElementById('country').value = "Denmark";
+                }
+            });
+        });
+    </script>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

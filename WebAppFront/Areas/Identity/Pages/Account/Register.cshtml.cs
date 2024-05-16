@@ -18,10 +18,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using WebAppFront.Pages.Addresses;
+using WebAppFront.Services.Interfaces;
+using WebAppFront.Services.Models.Addresses;
 
 namespace WebAppFront.Areas.Identity.Pages.Account
 {
-    [Authorize (Roles = "Formand")]
+    //[Authorize (Roles = "Formand")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -30,13 +34,15 @@ namespace WebAppFront.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IAddressService _addressService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IAddressService addressService)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,7 +50,9 @@ namespace WebAppFront.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _addressService = addressService;
         }
+        
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -99,7 +107,13 @@ namespace WebAppFront.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
-
+        //Modeler fra opret MemberWithAddress
+        [Required]
+        [BindProperty]
+        public ForeningsMedlemViewModel ForeningsMedlem { get; set; } = new ForeningsMedlemViewModel();
+        [Required]
+        [BindProperty]
+        public AddressViewModel Address { get; set; } = new AddressViewModel();
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -111,8 +125,8 @@ namespace WebAppFront.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid) 
+            //{
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -122,6 +136,25 @@ namespace WebAppFront.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    // Opret medlem med addresse Her
+                    var medlem = new ForeningsMedlemCreateRequestDto
+                    {
+                        FirstName = ForeningsMedlem.FirstName,
+                        LastName = ForeningsMedlem.LastName,
+                        Email = Input.Email,
+                        CreatedBy = User.Identity.Name,
+                        DateOfCreation = DateTime.Now,
+                        Address = new AddressCreateRequestDto
+                        {
+                            Street = Address.Street,
+                            City = Address.City,
+                            ZipCode = Address.ZipCode,
+                            Country = Address.Country
+                        }
+                    };
+                    await _addressService.CreateMemberWithAddress(medlem);
+
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -141,16 +174,15 @@ namespace WebAppFront.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        //await _signInManager.SignInAsync(user, isPersistent: false); Den her linje vil logge den nye bruger ind. Så derfor udkommenteret.
+                        return LocalRedirect("/Users/Index");
                     }
                 }
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-            }
-            // opret medlem med addresse Her
+            //}
 
             // If we got this far, something failed, redisplay form
             return Page();

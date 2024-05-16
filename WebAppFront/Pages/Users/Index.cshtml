@@ -21,9 +21,12 @@
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
                 <td>
-                    <a asp-page="EditUserRoles" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
+                    <a asp-page="EditUserRoles" asp-route-id="@user.Id" class="btn btn-primary">Rediger Rolle</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register New User</a>
+</li>

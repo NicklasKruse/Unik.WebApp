@@ -23,12 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Unik.Application\Unik.Application.csproj" />
-    <ProjectReference Include="..\Unik.Domain\Unik.Domain.csproj" />
-    <ProjectReference Include="..\Unik.Infrastructure\Unik.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
