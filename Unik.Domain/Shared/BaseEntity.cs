@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Unik.Domain.Shared
 {
-    public class BaseEntity  //Egentlig bare for at have rowversion på alle entities
+    public class BaseEntity  
     {
+        //pivate DateTime CreationDate {get;set;}
+        //public string CreatedBy { get; set; }
+        //public DateTime? LastModifiedDate { get; set; }
         [Timestamp]
         public byte[] RowVersion { get; private set; } = [];
     }
