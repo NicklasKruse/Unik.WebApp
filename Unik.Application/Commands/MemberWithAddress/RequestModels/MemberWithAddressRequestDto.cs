@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unik.Application.Commands.MemberWithAddress.RequestModels
+﻿namespace Unik.Application.Commands.MemberWithAddress.RequestModels
 {
     public class MemberWithAddressRequestDto
     {
@@ -12,5 +6,8 @@ namespace Unik.Application.Commands.MemberWithAddress.RequestModels
         public string LastName { get; set; }
         public string Email { get; set; }
         public AddressDto Address { get; set; }
+        public DateTime DateOfCreation { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
     }
 }

@@ -41,6 +41,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Hvis container kører vil den forsøge at skabe forbindelse mellem begge projekter. Så db updates kan kun køre uden container.
+
 //Add-Migration InitialMigration -Context BackendDbContext -Project SqlServerContext.Migrations
 builder.Services.AddDbContext<BackendDbContext>(
     options =>

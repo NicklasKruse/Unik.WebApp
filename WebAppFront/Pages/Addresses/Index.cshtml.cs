@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppFront.Services.Interfaces;
@@ -36,6 +37,8 @@ namespace WebAppFront.Pages.Addresses
                 FirstName = ForeningsMedlem.FirstName,
                 LastName = ForeningsMedlem.LastName,
                 Email = ForeningsMedlem.Email,
+                CreatedBy = User.Identity.Name,
+                DateOfCreation = DateTime.Now,
                 Address = new AddressCreateRequestDto
                 {
                     Street = Address.Street,
