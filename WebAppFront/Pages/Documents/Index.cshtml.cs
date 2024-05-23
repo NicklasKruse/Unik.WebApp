@@ -5,6 +5,9 @@ using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Documents
 {
+    /// <summary>
+    /// Page til at vise dokumenter
+    /// </summary>
     public class IndexModel : PageModel
     {
         private readonly IFileUploadService _fileUploadService;

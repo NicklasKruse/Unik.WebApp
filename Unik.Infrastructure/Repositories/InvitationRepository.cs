@@ -6,6 +6,9 @@ using Unik.Domain.Entities;
 
 namespace Unik.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Invitation repository
+    /// </summary>
     public class InvitationRepository : IInvitationRepository
     {
         private readonly BackendDbContext _context;
@@ -40,7 +43,12 @@ namespace Unik.Infrastructure.Repositories
                 };
             }
         }
-
+        /// <summary>
+        /// Get invitation by id og vis en DTO kopi af invitation. Brug .Load hvis du skal redigere invitation
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         InvitationQueryResultDto IInvitationRepository.GetById(int id)
         {
             var model = _context.Invitations.AsNoTracking().FirstOrDefault(x => x.Id == id);
@@ -56,10 +64,9 @@ namespace Unik.Infrastructure.Repositories
                 RowVersion = model.RowVersion
             };
         }
-
         Invitation IInvitationRepository.Load(int id)
         {
-            var invitation = _context.Invitations.AsNoTracking().FirstOrDefault(x => x.Id == id)
+            var invitation = _context.Invitations.FirstOrDefault(x => x.Id == id)
                 ?? throw new Exception("Invitation not found");
             return invitation;
         }

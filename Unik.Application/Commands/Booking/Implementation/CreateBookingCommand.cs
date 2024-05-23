@@ -30,6 +30,8 @@ namespace Unik.Application.Commands.Booking.Implementation
                 var booking = new Domain.Entities.Booking(itemResult, dto.StartDate, dto.EndDate)
                 {
                     UserId = dto.UserId,
+                    CreatedBy = dto.CreatedBy,
+                    DateOfCreation = dto.DateOfCreation
                 };
 
 

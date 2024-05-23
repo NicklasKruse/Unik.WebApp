@@ -6,6 +6,9 @@ using WebAppFront.Services.Models.Addresses;
 
 namespace WebAppFront.Pages.Addresses
 {
+    /// <summary>
+    /// Page til at oprette en foreningsmedlem med adresse
+    /// </summary>
     public class IndexModel : PageModel
     {
         private readonly IAddressService _AddressService;

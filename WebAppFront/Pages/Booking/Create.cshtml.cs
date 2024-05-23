@@ -44,7 +44,6 @@ namespace WebAppFront.Pages.Booking
                 EndDate = DateTime.Now.AddDays(1),
                 DateOfCreation = DateTime.Now,
                 CreatedBy = User.Identity.Name,
-
             };
             await _bookingService.CreateBooking(booking);
             return RedirectToPage("Index");

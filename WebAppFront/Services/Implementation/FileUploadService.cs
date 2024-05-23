@@ -24,7 +24,7 @@ namespace WebAppFront.Services.Implementation
             return filePath;
         }
         /// <summary>
-        /// List til at se
+        /// Liste til at se
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> ListFiles()
@@ -32,7 +32,7 @@ namespace WebAppFront.Services.Implementation
             var directoryPath = Path.Combine("Uploads");
             if (Directory.Exists(directoryPath))
             {
-                return Directory.GetFiles(directoryPath).Select(Path.GetFileName); //returner filmnavn og kun filnavn for ikke at ødelgge stien.
+                return Directory.GetFiles(directoryPath).Select(Path.GetFileName); //returner filnavn og kun filnavn for ikke at ødelgge stien.
             }
             return new List<string>();
         }

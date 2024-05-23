@@ -6,6 +6,9 @@ using Unik.Domain.ValueObjects;
 
 namespace Unik.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Item Repository
+    /// </summary>
     public class ItemRepository :IItemRepository
     {
         private readonly BackendDbContext _context;

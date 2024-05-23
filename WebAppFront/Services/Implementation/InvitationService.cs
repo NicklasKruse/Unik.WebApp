@@ -4,6 +4,9 @@ using WebAppFront.Services.Models.Invitation;
 
 namespace WebAppFront.Services.Implementation
 {
+    /// <summary>
+    /// Service til håndtering af invitationer
+    /// </summary>
     public class InvitationService : IInvitationService
     {
         private readonly HttpClient _httpClient;

@@ -3,6 +3,9 @@ using WebAppFront.Services.Models.Item;
 
 namespace WebAppFront.Services.Implementation
 {
+    /// <summary>
+    /// Service til håndtering af items
+    /// </summary>
     public class ItemService : IItemService
     {
         private readonly HttpClient _httpClient;

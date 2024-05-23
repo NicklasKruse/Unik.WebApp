@@ -3,6 +3,9 @@ using WebAppFront.Services.Models.Addresses;
 
 namespace WebAppFront.Services.Implementation
 {
+    /// <summary>
+    /// Service til MemberWithAddress
+    /// </summary>
     public class AddressService : IAddressService
     {
         private readonly HttpClient _httpClient;

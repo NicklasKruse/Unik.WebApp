@@ -4,6 +4,9 @@ using WebAppFront.Services.Models.Booking;
 
 namespace WebAppFront.Services.Implementation
 {
+    /// <summary>
+    /// Service til håndtering af booking
+    /// </summary>
     public class BookingService : IBookingService
     {
         private readonly HttpClient _httpClient;
@@ -12,7 +15,12 @@ namespace WebAppFront.Services.Implementation
         {
             _httpClient = httpClient;
         }
-
+        /// <summary>
+        /// I denne metode oprettes en booking og derefter opkræves et depositum
+        /// </summary>
+        /// <param name="bookingRequest"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         async Task IBookingService.CreateBooking(BookingCreateRequestDto bookingRequest)
         {
             var response = await _httpClient.PostAsJsonAsync("api/Booking/create", bookingRequest);
@@ -71,12 +79,21 @@ namespace WebAppFront.Services.Implementation
             return await _httpClient.GetFromJsonAsync<BookingQueryResultDto>($"api/Booking/{id}");
         }
 
-
+        /// <summary>
+        /// Her hentes alle bookinger og sorteres efter startdato
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<BookingQueryResultDto>> GetAllBookingsSortedByDate()
         {
             var bookings = await _httpClient.GetFromJsonAsync<IEnumerable<BookingQueryResultDto>>("api/Booking/getall");
             return bookings.OrderBy(b => b.StartDate);
         }
+        /// <summary>
+        /// Henter alle bookinger i et givent tidsrum
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<BookingQueryResultDto>> GetBookingsByDateRange(DateTime startDate, DateTime endDate)
         {
             var bookings = await _httpClient.GetFromJsonAsync<IEnumerable<BookingQueryResultDto>>("api/Booking/getall");

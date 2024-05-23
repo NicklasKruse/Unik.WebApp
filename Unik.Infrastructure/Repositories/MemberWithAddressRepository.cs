@@ -12,6 +12,9 @@ using Unik.Domain.ValueObjects;
 
 namespace Unik.Infrastructure.Repositories
 {
+    /// <summary>
+    /// MemberWithAddress Repository
+    /// </summary>
     public class MemberWithAddressRepository : IMemberWithAddressRepository
     {
         private readonly BackendDbContext _context;
@@ -37,7 +40,6 @@ namespace Unik.Infrastructure.Repositories
         MemberWithAddress IMemberWithAddressRepository.Load(string Street, string City, string ZipCode, string Country)
         {
             var memberWithAddress = _context.MemberWithAddress
-                .AsNoTracking()
                 .Include(x => x.Address)
                 .FirstOrDefault(x => x.Address.Street == Street && x.Address.City == City && x.Address.ZipCode == ZipCode && x.Address.Country == Country);
             if (memberWithAddress == null)

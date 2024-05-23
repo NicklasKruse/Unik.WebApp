@@ -16,7 +16,7 @@ namespace Unik.Infrastructure.Repositories
 
         public Member Load(int id)
         {
-            var member = _db.Memberships.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            var member = _db.Memberships.FirstOrDefault(x => x.Id == id);
             if(member == null)
             {
                 throw new Exception("Member not found");

@@ -1,16 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SqlServerContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Unik.Application.Queries.Booking.DTO;
 using Unik.Application.Repository;
 using Unik.Domain.Entities;
 
 namespace Unik.Infrastructure.Repositories
 {
+    /// <summary>
+    /// Repository til Booking
+    /// </summary>
     public class BookingRepository : IBookingRepository
     {
         private readonly BackendDbContext _context;
@@ -50,7 +48,12 @@ namespace Unik.Infrastructure.Repositories
                 };
             }
         }
-
+        /// <summary>
+        /// Get booking by id og vis en DTO kopi af booking
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         BookingQueryResultDto IBookingRepository.GetById(int id)
         {
             var model = _context.Bookings.Include(b => b.Item).AsNoTracking().FirstOrDefault(x => x.Id == id);
@@ -67,10 +70,15 @@ namespace Unik.Infrastructure.Repositories
                 EndDate = model.EndDate
             };
         }
-
+        /// <summary>
+        /// Load specific booking fra databasen
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         Booking IBookingRepository.Load(int id)
         {
-            var booking = _context.Bookings.AsNoTracking().FirstOrDefault(x => x.Id == id)
+            var booking = _context.Bookings.FirstOrDefault(x => x.Id == id)
                 ?? throw new Exception("Booking not found");
             return booking;
         }

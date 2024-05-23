@@ -6,6 +6,9 @@ using WebAppFront.Services.Models.Item;
 
 namespace WebAppFront.Pages.Item
 {
+    /// <summary>
+    /// Oprettelse af et nyt item. Kan kun tilgås af formand og bestyrelse
+    /// </summary>
     [Authorize(Roles = "Formand, Bestyrelse")]
     public class CreateModel : PageModel
     {

@@ -11,7 +11,7 @@ namespace WebAppFront.Pages.Users
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        [BindProperty(SupportsGet = true)] // For at sikre 
+        [BindProperty(SupportsGet = true)] // for at sikre at vi kan opdatere selectedrole løbende.
         public string SelectedRole { get; set; }
 
         public IEnumerable<IdentityUser> Users { get; set; } = Enumerable.Empty<IdentityUser>();
@@ -21,7 +21,10 @@ namespace WebAppFront.Pages.Users
             _userManager = userManager;
             _roleManager = roleManager;
         }
-
+        /// <summary>
+        /// Se alle brugere i systemet. Hvis en rolle er valgt, vises kun brugere med denne rolle.
+        /// </summary>
+        /// <returns></returns>
         public async Task OnGetAsync()
         {
             var allUsers = _userManager.Users.ToList();

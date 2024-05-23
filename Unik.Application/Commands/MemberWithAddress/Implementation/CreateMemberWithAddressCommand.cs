@@ -6,6 +6,9 @@ using Unik.Domain.ValueObjects;
 
 namespace Unik.Application.Commands.MemberWithAddress.Implementation
 {
+    /// <summary>
+    /// Opret medlem med adresse
+    /// </summary>
     public class CreateMemberWithAddressCommand : ICreateMemberWithAddressCommand
     {
         private readonly IMemberWithAddressRepository _memberWithAddressRepository;
