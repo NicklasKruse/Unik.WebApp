@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unik.Infrastructure", "Unik
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{58654469-B4BD-45CD-8A63-7A3CEFD24D0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unik.BookingTests", "Unik.Tests\Unik.BookingTests.csproj", "{970E86B8-7C9F-4394-8794-C9329EFD21B1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unik.Application", "Unik.Application\Unik.Application.csproj", "{A5E61267-A6FF-47C5-903D-12395F4028AB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppFront", "WebAppFront\WebAppFront.csproj", "{153D9BF5-BA80-47F7-83D4-5DD1B7D8091B}"
@@ -41,10 +39,6 @@ Global
 		{F12D1983-3E75-48F8-A333-313C0A5EC09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12D1983-3E75-48F8-A333-313C0A5EC09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12D1983-3E75-48F8-A333-313C0A5EC09D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{970E86B8-7C9F-4394-8794-C9329EFD21B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{970E86B8-7C9F-4394-8794-C9329EFD21B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{970E86B8-7C9F-4394-8794-C9329EFD21B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{970E86B8-7C9F-4394-8794-C9329EFD21B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5E61267-A6FF-47C5-903D-12395F4028AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5E61267-A6FF-47C5-903D-12395F4028AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5E61267-A6FF-47C5-903D-12395F4028AB}.Release|Any CPU.ActiveCfg = Release|Any CPU

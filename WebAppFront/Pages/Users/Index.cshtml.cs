@@ -11,7 +11,7 @@ namespace WebAppFront.Pages.Users
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        [BindProperty(SupportsGet = true)]
+        [BindProperty(SupportsGet = true)] // For at sikre 
         public string SelectedRole { get; set; }
 
         public IEnumerable<IdentityUser> Users { get; set; } = Enumerable.Empty<IdentityUser>();
