@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unik.Domain.ValueObjects
+﻿namespace Unik.Domain.ValueObjects
 {
-    public class Address
+    public class Address // ValueObject, immutable, skal ikke kunne ændres efter oprettelse. Id er til EF.
     {
         public int Id { get; set; }
         public string Street { get; set; }
