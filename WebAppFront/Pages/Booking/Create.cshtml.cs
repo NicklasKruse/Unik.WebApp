@@ -43,7 +43,7 @@ namespace WebAppFront.Pages.Booking
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddDays(1),
                 DateOfCreation = DateTime.Now,
-                CreatedBy = User.Identity.Name,
+                CreatedBy = User.Identity.Name
             };
             await _bookingService.CreateBooking(booking);
             return RedirectToPage("Index");

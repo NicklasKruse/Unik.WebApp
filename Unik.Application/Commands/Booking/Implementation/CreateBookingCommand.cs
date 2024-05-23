@@ -38,10 +38,9 @@ namespace Unik.Application.Commands.Booking.Implementation
                 _bookingRepository.AddBooking(booking);
                 _unitOfWork.Commit();
             }
-            catch (Exception ex)
+            catch
             {
                 _unitOfWork.Rollback();
-                Console.WriteLine(ex.ToString()); //Har fejl. Så bruger til at se hvad der sker
                 throw;
             }
         }

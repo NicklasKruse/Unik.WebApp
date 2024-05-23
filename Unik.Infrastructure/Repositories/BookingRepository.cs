@@ -44,7 +44,8 @@ namespace Unik.Infrastructure.Repositories
                     ItemId = booking.Item.Id,
                     UserId = booking.UserId,
                     StartDate = booking.StartDate,
-                    EndDate = booking.EndDate
+                    EndDate = booking.EndDate,
+                    CreatedBy = booking.CreatedBy
                 };
             }
         }
