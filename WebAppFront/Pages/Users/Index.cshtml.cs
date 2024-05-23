@@ -2,25 +2,42 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebAppUserContext;
 
 namespace WebAppFront.Pages.Users
 {
     [Authorize(Roles = "Formand")]
     public class IndexModel : PageModel
     {
-        private readonly WebAppUserDbContext _dbContext;
-        [BindProperty]
-        public IEnumerable<IdentityUser> users { get; set; } = Enumerable.Empty<IdentityUser>();
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public IndexModel(WebAppUserDbContext dbContext)
+        [BindProperty(SupportsGet = true)]
+        public string SelectedRole { get; set; }
+
+        public IEnumerable<IdentityUser> Users { get; set; } = Enumerable.Empty<IdentityUser>();
+
+        public IndexModel(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _dbContext = dbContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            users = _dbContext.Users.ToList();
+            var allUsers = _userManager.Users.ToList();
+
+            if (!string.IsNullOrEmpty(SelectedRole))
+            {
+                var role = await _roleManager.FindByNameAsync(SelectedRole);
+                if (role != null)
+                {
+                    Users = allUsers.Where(user => _userManager.IsInRoleAsync(user, SelectedRole).Result);
+                }
+            }
+            else
+            {
+                Users = allUsers;
+            }
         }
     }
 }
