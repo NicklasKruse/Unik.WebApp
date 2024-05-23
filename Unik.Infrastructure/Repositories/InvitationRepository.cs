@@ -35,6 +35,7 @@ namespace Unik.Infrastructure.Repositories
                     Id = invitation.Id,
                     Description = invitation.Description,
                     Date = invitation.Date,
+                    CreatedBy = invitation.CreatedBy,
                     RowVersion = invitation.RowVersion
                 };
             }

@@ -20,7 +20,9 @@ namespace WebAppFront.Pages.Invitations
             {
                 Id = invitation.Id,
                 Description = invitation.Description,
-                Date = invitation.Date
+                Date = invitation.Date,
+                CreatedBy = invitation.CreatedBy
+
             }).ToList();
         }
         public async Task<IActionResult> OnPostDelete(int id)

@@ -27,7 +27,10 @@ namespace Unik.Application.Commands.Invitation.Implementation
             try
             {
                 _unitOfWork.BeginTransaction(IsolationLevel.Serializable);
-                var invitation = new Domain.Entities.Invitation(invitationRequestDto.Description, invitationRequestDto.Date);
+                var invitation = new Domain.Entities.Invitation(invitationRequestDto.Description, invitationRequestDto.Date) 
+                { 
+                    CreatedBy = invitationRequestDto.CreatedBy, DateOfCreation = invitationRequestDto.DateOfCreation 
+                };
                 _invitationRepository.Create(invitation);
                 _unitOfWork.Commit();
             }
