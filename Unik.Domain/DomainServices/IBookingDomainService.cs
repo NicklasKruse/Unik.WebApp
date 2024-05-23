@@ -10,7 +10,6 @@ namespace Unik.Domain.Ínterfaces
 {
     public interface IBookingDomainService
     {
-        void UpdateBookingWithItems(Booking booking, Item item);
         bool BookingExistsOnDate(DateTime date, Item item);
     }
 }

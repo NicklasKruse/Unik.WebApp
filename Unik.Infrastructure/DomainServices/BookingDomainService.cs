@@ -20,11 +20,6 @@ namespace Unik.Infrastructure.DomainServices
         {
             _context = context;
         }
-
-        public void UpdateBookingWithItems(Booking booking, Item item)
-        {
-            booking.Edit(item, booking.StartDate, booking.EndDate);
-        }
         bool IBookingDomainService.BookingExistsOnDate(DateTime date, Item item)
         {
             return _context.Bookings.AsNoTracking().ToList().Any(a => a.StartDate <= date && a.EndDate >= date && a.Item.Id == item.Id);

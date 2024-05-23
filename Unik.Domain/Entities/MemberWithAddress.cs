@@ -15,6 +15,8 @@ namespace Unik.Domain.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public Address Address { get; set; }
+        //public Roles Role { get; set; }
+        //public bool IsFormerBoardMember { get; set; }
         public MemberWithAddress()
         {
             //EF

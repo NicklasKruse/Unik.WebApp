@@ -14,6 +14,7 @@ namespace Unik.Domain.Entities
 {
     public class Booking : BaseEntity
     {
+        //private readonly IBookingDomainService _bookingDomainService;
         public int Id { get; set; }
         public Item Item { get; set; }
         public string UserId { get; set; } //Medlem opretter en booking. På booking skriver man sin email/UserId
@@ -24,13 +25,18 @@ namespace Unik.Domain.Entities
         {
             //EF
         }
-        public Booking(Item item, DateTime startDate, DateTime endDate)
+        public Booking(Item item, DateTime startDate, DateTime endDate/*,IBookingDomainService bookingService*/)
         {
+            //this._bookingDomainService = bookingService;
 
             Item = item;
             StartDate = startDate;
             EndDate = endDate;
+
             //Validering af dato overlap
+
+            //if (!_bookingDomainService.BookingExistsOnDate(startDate, item)) throw new Exception("Booking already exists on this date");
+
             // Preconditions
             // Logic
 
