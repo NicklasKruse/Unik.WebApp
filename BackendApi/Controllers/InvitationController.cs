@@ -27,6 +27,9 @@ namespace BackendApi.Controllers
         }
 
         [HttpPost("create")] //api/Invitation/create 
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post(InvitationRequestDto dto)
         { //2024-01-20 date time format til swagger
             try
@@ -40,6 +43,9 @@ namespace BackendApi.Controllers
             }
         }
         [HttpDelete("delete/{id}/")] //api/invitation/delete/{id}
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<InvitationDeleteRequestDto> Delete(int id)
         {
             try
@@ -54,6 +60,10 @@ namespace BackendApi.Controllers
         }
         [HttpPut("edit")] //api/invitation/edit
         [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public ActionResult Put([FromBody] InvitationEditRequestDto dto)
         {
             try
@@ -67,6 +77,9 @@ namespace BackendApi.Controllers
             }
         }
         [HttpGet("get/{id}")] //api/invitation/{id}
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<InvitationQueryResultDto> Get(int id)
         {
             try
@@ -79,6 +92,9 @@ namespace BackendApi.Controllers
             }
         }
         [HttpGet("getall")] //api/invitation/getall
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<InvitationQueryResultDto>> GetAll()
         {
             try

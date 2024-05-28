@@ -30,6 +30,9 @@ namespace BackendApi.Controllers
         }
 
         [HttpPost("create")] //api/Booking/create
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post(BookingCreateRequestDto dto)
         {
             if(!ModelState.IsValid)
@@ -51,8 +54,9 @@ namespace BackendApi.Controllers
             }
         }
         [HttpDelete("delete/{id}/")] //api/Booking/delete/{id}
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<BookingDeleteRequestDto> Delete(int id)
         {
             try
@@ -68,6 +72,10 @@ namespace BackendApi.Controllers
 
         [HttpPut("edit")] //api/Booking/edit
         [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public ActionResult Put([FromBody] BookingEditRequestDto dto)
         {
             try
@@ -81,6 +89,9 @@ namespace BackendApi.Controllers
             }
         }
         [HttpGet("{id}")] //api/Booking/{id}
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<BookingQueryResultDto> Get(int id)
         {
             try
@@ -94,6 +105,9 @@ namespace BackendApi.Controllers
             }
         }
         [HttpGet("getall")] //api/Booking/getall
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<BookingQueryResultDto>> GetAll()
         {
            var bookings = _getAllBookingQuery.GetAllBooking();
@@ -105,7 +119,10 @@ namespace BackendApi.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost("chargeDeposit")]
-        public async Task<IActionResult> ChargeDeposit([FromBody] ChargeDepositRequestDto dto)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        public async Task<IActionResult> Post([FromBody] ChargeDepositRequestDto dto)
         {
             try
             {

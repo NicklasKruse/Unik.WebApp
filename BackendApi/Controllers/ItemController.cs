@@ -27,6 +27,9 @@ namespace BackendApi.Controllers
             _deleteItemCommand = deleteItemCommand;
         }
         [HttpPost("create")] //api/Item/create
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post(ItemCreateRequestDto dto)
         {
             try
@@ -40,8 +43,9 @@ namespace BackendApi.Controllers
             }
         }
         [HttpDelete("delete/{id}/")] //api/Item/delete/{id}
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ItemDeleteRequestDto> Delete(int id)
         {
             try
@@ -56,6 +60,10 @@ namespace BackendApi.Controllers
         }
         [HttpPut("edit")] //api/Item/edit
         [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public ActionResult Put([FromBody] ItemEditRequestDto dto)
         {
             try
@@ -69,6 +77,8 @@ namespace BackendApi.Controllers
             }
         }
         [HttpGet("getall")] //api/Item/getall
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<IEnumerable<ItemQueryResultDto>> Get()
         {
             try
@@ -88,6 +98,8 @@ namespace BackendApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")] //api/Item/{id}
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<ItemQueryResultDto> Get(int id)
         {
             try

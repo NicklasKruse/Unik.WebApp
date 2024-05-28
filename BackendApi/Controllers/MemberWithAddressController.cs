@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 using Unik.Application.Commands.MemberWithAddress;
 using Unik.Application.Commands.MemberWithAddress.RequestModels;
 
@@ -16,6 +17,9 @@ namespace BackendApi.Controllers
         }
 
         [HttpPost("create")] //api/MemberWithAddress/create
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(MemberWithAddressRequestDto dto)
         {
             try
