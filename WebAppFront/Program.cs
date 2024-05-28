@@ -54,8 +54,8 @@ builder.Services.AddAuthorization(options =>
 });
 
 
-builder.Services.AddScoped<IFileUploadService, FileUploadService>();
-builder.Services.AddScoped<IGetContentType, GetContentType>();
+builder.Services.AddTransient<IFileUploadService, FileUploadService>();
+builder.Services.AddTransient<IGetContentType, GetContentType>();
 
 builder.Services.AddSwaggerGen();
 

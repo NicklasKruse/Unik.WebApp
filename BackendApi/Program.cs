@@ -55,7 +55,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(p =>
 });
 
 
- 
+
+//Scoped fordi vi vil sørge bibeholde "state" i hele requesten. Nogle commands/queries kunne måske være transient, men lader dem være scoped, da de skal interagere med andre scoped services, og derfor skal de have samme "state".
 
 //Service registrering Member
 builder.Services.AddScoped<IMemberRepository, MemberRepository>();
