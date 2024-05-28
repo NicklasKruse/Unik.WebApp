@@ -16,7 +16,7 @@ namespace BackendApi.Controllers
         }
 
         [HttpPost("create")] //api/MemberWithAddress/create
-        public async Task<IActionResult> Create(MemberWithAddressRequestDto dto)
+        public async Task<IActionResult> Post(MemberWithAddressRequestDto dto)
         {
             try
             {

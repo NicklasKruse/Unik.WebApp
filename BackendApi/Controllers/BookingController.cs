@@ -30,7 +30,7 @@ namespace BackendApi.Controllers
         }
 
         [HttpPost("create")] //api/Booking/create
-        public IActionResult Create(BookingCreateRequestDto dto)
+        public IActionResult Post(BookingCreateRequestDto dto)
         {
             if(!ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace BackendApi.Controllers
 
         [HttpPut("edit")] //api/Booking/edit
         [Consumes(MediaTypeNames.Application.Json)]
-        public ActionResult Edit([FromBody] BookingEditRequestDto dto)
+        public ActionResult Put([FromBody] BookingEditRequestDto dto)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace BackendApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("{id}")] //api/Booking/get/{id}
+        [HttpGet("{id}")] //api/Booking/{id}
         public ActionResult<BookingQueryResultDto> Get(int id)
         {
             try

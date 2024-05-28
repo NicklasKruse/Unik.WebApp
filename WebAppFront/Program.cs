@@ -53,7 +53,7 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Admin", policyBuilder => policyBuilder.RequireClaim("Admin"));
 });
 
-
+//Stateless services
 builder.Services.AddTransient<IFileUploadService, FileUploadService>();
 builder.Services.AddTransient<IGetContentType, GetContentType>();
 

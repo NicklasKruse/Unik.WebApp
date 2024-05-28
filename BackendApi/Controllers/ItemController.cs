@@ -27,7 +27,7 @@ namespace BackendApi.Controllers
             _deleteItemCommand = deleteItemCommand;
         }
         [HttpPost("create")] //api/Item/create
-        public IActionResult Create(ItemCreateRequestDto dto)
+        public IActionResult Post(ItemCreateRequestDto dto)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace BackendApi.Controllers
         }
         [HttpPut("edit")] //api/Item/edit
         [Consumes(MediaTypeNames.Application.Json)]
-        public ActionResult Edit([FromBody] ItemEditRequestDto dto)
+        public ActionResult Put([FromBody] ItemEditRequestDto dto)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace BackendApi.Controllers
             }
         }
         [HttpGet("getall")] //api/Item/getall
-        public ActionResult<IEnumerable<ItemQueryResultDto>> GetAll()
+        public ActionResult<IEnumerable<ItemQueryResultDto>> Get()
         {
             try
             {
@@ -87,7 +87,7 @@ namespace BackendApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")] //api/Item/get/{id}
+        [HttpGet("{id}")] //api/Item/{id}
         public ActionResult<ItemQueryResultDto> Get(int id)
         {
             try

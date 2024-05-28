@@ -27,7 +27,7 @@ namespace BackendApi.Controllers
         }
 
         [HttpPost("create")] //api/Invitation/create 
-        public IActionResult Create(InvitationRequestDto dto)
+        public IActionResult Post(InvitationRequestDto dto)
         { //2024-01-20 date time format til swagger
             try
             {
@@ -54,7 +54,7 @@ namespace BackendApi.Controllers
         }
         [HttpPut("edit")] //api/invitation/edit
         [Consumes(MediaTypeNames.Application.Json)]
-        public ActionResult Edit([FromBody] InvitationEditRequestDto dto)
+        public ActionResult Put([FromBody] InvitationEditRequestDto dto)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace BackendApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("get/{id}")] //api/invitation/get/{id}
+        [HttpGet("get/{id}")] //api/invitation/{id}
         public ActionResult<InvitationQueryResultDto> Get(int id)
         {
             try

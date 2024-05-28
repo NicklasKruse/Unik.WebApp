@@ -26,7 +26,7 @@ namespace BackendApi.Controllers
         }
 
         [HttpPost("create")] //api/Member/create
-        public IActionResult Create(MemberCreateRequestDto dto)
+        public IActionResult Post(MemberCreateRequestDto dto)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace BackendApi.Controllers
 
         [HttpPut("edit")] //api/Member/edit
         [Consumes(MediaTypeNames.Application.Json)] //!!
-        public ActionResult Edit([FromBody] MemberEditRequestDto dto)//Viker når frontend er klar. Det er frontconnectlibrary der skal sende data
+        public ActionResult Put([FromBody] MemberEditRequestDto dto)//Viker når frontend er klar. Det er frontconnectlibrary der skal sende data
         {
             try
             {
@@ -74,7 +74,7 @@ namespace BackendApi.Controllers
             return member;
         }
         [HttpGet("getall")]
-        public ActionResult<IEnumerable<MemberQueryResultDto>> GetAll()
+        public ActionResult<IEnumerable<MemberQueryResultDto>> Get()
         {
             var members = _getAllMemberQuery.GetAllMember();
             return members.ToList();
