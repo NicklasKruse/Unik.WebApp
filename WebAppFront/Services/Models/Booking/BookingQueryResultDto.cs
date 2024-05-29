@@ -8,6 +8,7 @@ namespace WebAppFront.Services.Models.Booking
 {
     public class BookingQueryResultDto
     {
+        public int Id { get; set; }
         public int ItemId { get; set; }
         public string UserId { get; set; } 
         public DateTime StartDate { get; set; }

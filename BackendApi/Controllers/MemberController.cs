@@ -34,7 +34,7 @@ namespace BackendApi.Controllers
             try
             {
                 _createMemberCommand.CreateMember(dto);
-                return Ok();
+                return Created();
             }
             catch (Exception ex)
             {

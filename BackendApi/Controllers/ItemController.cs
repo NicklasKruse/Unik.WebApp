@@ -35,7 +35,7 @@ namespace BackendApi.Controllers
             try
             {
                 _createItemCommand.CreateItem(dto);
-                return Ok();
+                return Created();
             }
             catch (Exception ex)
             {

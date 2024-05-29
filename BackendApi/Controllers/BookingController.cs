@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using System.Net.Mime;
 using Unik.Application.Commands.Booking;
@@ -46,7 +47,7 @@ namespace BackendApi.Controllers
             try
             {
                 _createBookingCommand.CreateBooking(dto);
-                return Ok();
+                return Created();
             }
             catch (Exception ex)
             {
@@ -62,7 +63,7 @@ namespace BackendApi.Controllers
             try
             {
                 _deleteBookingCommand.Delete(id);
-                return Ok();
+                return NoContent();
             }
             catch (Exception ex)
             {

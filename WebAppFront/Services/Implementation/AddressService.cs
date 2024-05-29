@@ -27,5 +27,10 @@ namespace WebAppFront.Services.Implementation
                 throw new Exception("Kunne ikke oprette medlem med adresse");
             }
         }
+
+        async Task<IEnumerable<ForeningsMedlemQueryResultDto>> IAddressService.GetAllMemberWithAddress()
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<ForeningsMedlemQueryResultDto>>("api/MemberWithAddress");
+        }
     }
 }

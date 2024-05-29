@@ -1,6 +1,7 @@
 ﻿@page
 @model WebAppFront.Pages.Booking.IndexModel
 @{
+    ViewData["Title"] = "Booking";
 }
 <style>
     .booking-box {
@@ -21,12 +22,20 @@
         {
             <div class="booking-box">
                 <p><strong>Item ID:</strong> @booking.ItemId</p>
-            <p><strong>Created By:</strong> @booking.CreatedBy</p>
-            <p><strong>Date Range:</strong> @booking.StartDate - @booking.EndDate</p>
-        </div>
+                <p><strong>Created By:</strong> @booking.CreatedBy</p>
+                <p><strong>Date Range:</strong> @booking.StartDate - @booking.EndDate</p>
+                <!-- Delete Button -->
+                <form asp-page-handler="Delete" method="post">
+                    <input type="hidden" name="id" value="@booking.Id" />
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
         }
     }
 </div>
+
+
+
 
 @* <h1>Bookings by Date Range</h1>
 <form method="post">

@@ -76,5 +76,28 @@ namespace Unik.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
+
+        IEnumerable<MemberWithAddressQueryResultDto> IMemberWithAddressRepository.GetAllMemberWithAddress()
+        {
+            foreach(var memberWithAddress in _context.MemberWithAddress.Include(x => x.Address).AsNoTracking())
+            {
+                yield return new MemberWithAddressQueryResultDto
+                {
+                    FirstName = memberWithAddress.FirstName,
+                    LastName = memberWithAddress.LastName,
+                    Email = memberWithAddress.Email,
+                    Address = new GetAddressQueryResultDto
+                    {
+                        City = memberWithAddress.Address.City,
+                        Country = memberWithAddress.Address.Country,
+                        Street = memberWithAddress.Address.Street,
+                        ZipCode = memberWithAddress.Address.ZipCode
+                    },
+                    DateOfCreation = memberWithAddress.DateOfCreation,
+                    CreatedBy = memberWithAddress.CreatedBy,
+                    LastModifiedDate = memberWithAddress.LastModifiedDate
+                };
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Users
 {
@@ -10,16 +11,19 @@ namespace WebAppFront.Pages.Users
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IAddressService _addressService;
 
         [BindProperty(SupportsGet = true)] // for at sikre at vi kan opdatere selectedrole løbende.
         public string SelectedRole { get; set; }
 
         public IEnumerable<IdentityUser> Users { get; set; } = Enumerable.Empty<IdentityUser>();
+        public List<MemberWithAddressViewModel> Members { get; set; } = new List<MemberWithAddressViewModel>();
 
-        public IndexModel(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public IndexModel(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IAddressService addressService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _addressService = addressService;
         }
         /// <summary>
         /// Se alle brugere i systemet. Hvis en rolle er valgt, vises kun brugere med denne rolle.
@@ -28,6 +32,20 @@ namespace WebAppFront.Pages.Users
         public async Task OnGetAsync()
         {
             var allUsers = _userManager.Users.ToList();
+            var members = await _addressService.GetAllMemberWithAddress();
+
+            Members = members.Select(member => new MemberWithAddressViewModel
+            {
+                Id = member.Id,
+                Address = member.Address,
+                FirstName = member.FirstName,
+                LastName = member.LastName,
+                Email = member.Email,
+                RowVersion = member.RowVersion,
+                DateOfCreation = member.DateOfCreation,
+                CreatedBy = member.CreatedBy,
+                LastModifiedDate = member.LastModifiedDate
+            }).ToList();
 
             if (!string.IsNullOrEmpty(SelectedRole))
             {

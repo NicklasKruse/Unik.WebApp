@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebAppFront.Services.Models.Booking
+﻿namespace WebAppFront.Services.Models.Booking
 {
-    internal class BookingDeleteRequestDto
+    public class BookingDeleteRequestDto
     {
+        public int id { get; set; }
     }
 }

@@ -2,6 +2,8 @@
 using System.Net.Mime;
 using Unik.Application.Commands.MemberWithAddress;
 using Unik.Application.Commands.MemberWithAddress.RequestModels;
+using Unik.Application.Queries.MemberWithAddress;
+using Unik.Application.Queries.MemberWithAddress.DTO;
 
 namespace BackendApi.Controllers
 {
@@ -10,12 +12,13 @@ namespace BackendApi.Controllers
     public class MemberWithAddressController : Controller
     {
         private readonly ICreateMemberWithAddressCommand _createMemberWithAddressCommand;
+        private readonly IGetAllMemberWithAddressQuery _getAllMemberWithAddressQuery;
 
-        public MemberWithAddressController(ICreateMemberWithAddressCommand createMemberWithAddressCommand)
+        public MemberWithAddressController(ICreateMemberWithAddressCommand createMemberWithAddressCommand, IGetAllMemberWithAddressQuery getAllMemberWithAddressQuery)
         {
             _createMemberWithAddressCommand = createMemberWithAddressCommand;
+            _getAllMemberWithAddressQuery = getAllMemberWithAddressQuery;
         }
-
         [HttpPost("create")] //api/MemberWithAddress/create
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -25,18 +28,22 @@ namespace BackendApi.Controllers
             try
             {
                 await _createMemberWithAddressCommand.CreateMemberWithAddress(dto);
-                return Ok();
+                return Created();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
 
         }
-        [HttpGet] //Er nød til at have en get her for ellers vil swagger ikke være med
-        public IActionResult Index()
+        [HttpGet] //api/MemberWithAddress
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<MemberWithAddressQueryResultDto>> Get()
         {
-            return View();
+            var membersWithAddress = _getAllMemberWithAddressQuery.GetAllMemberWithAddress();
+            return Ok(membersWithAddress);
         }
     }
 }

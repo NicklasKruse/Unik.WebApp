@@ -68,7 +68,8 @@ namespace Unik.Infrastructure.Repositories
                 ItemId = model.Item.Id,
                 UserId = model.UserId,
                 StartDate = model.StartDate,
-                EndDate = model.EndDate
+                EndDate = model.EndDate,
+                CreatedBy = model.CreatedBy
             };
         }
         /// <summary>

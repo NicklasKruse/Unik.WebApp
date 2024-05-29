@@ -35,7 +35,7 @@ namespace BackendApi.Controllers
             try
             {
                 _createInvitationCommand.CreateInvitation(dto);
-                return Ok();
+                return Created();
             }
             catch (Exception ex)
             {
@@ -43,6 +43,7 @@ namespace BackendApi.Controllers
             }
         }
         [HttpDelete("delete/{id}/")] //api/invitation/delete/{id}
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -51,7 +52,7 @@ namespace BackendApi.Controllers
             try
             {
                 _deleteInvitationCommand.DeleteInvitation(id);
-                return Ok();
+                return NoContent();
             }
             catch (Exception ex)
             {

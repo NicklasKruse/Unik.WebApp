@@ -1,10 +1,11 @@
 ﻿@page
 @model WebAppFront.Pages.Member.IndexModel
 @{
+    ViewData["Title"] = "Members";
 }
 <form method="post">
     <h1>Member List</h1>
-
+    <h5>Dette er en gammel medlemsliste. Den indeholder dog funktioner, som kan bruges til test af systemet</h5>
     @if (Model.Members.Any())
     {
         <table>
@@ -23,7 +24,7 @@
                         <td>@member.Id</td>
                         <td>@member.Name</td>
                         <td>@member.Address</td>
-                        @if(User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
+                        @if (User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
                         {
                             <td>
                                 <a asp-page="./Edit" asp-route-id="@member.Id">Edit</a>
@@ -32,7 +33,7 @@
                                 </form>
                             </td>
                         }
-                        
+
                     </tr>
                 }
             </tbody>
@@ -48,9 +49,9 @@
     {
         <a asp-page="./Create">Opret Medlem</a>
     }
-    
 
-   
+
+
     <!-- <a asp-page="./Delete">Slet Medlem</a>-->
     <!--<a asp-page="./Index">Medlemmer</a>-->
 </form>
