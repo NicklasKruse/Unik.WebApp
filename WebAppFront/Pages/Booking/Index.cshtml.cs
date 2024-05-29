@@ -51,11 +51,13 @@ namespace WebAppFront.Pages.Booking
             if (booking != null && User.Identity.Name == booking.CreatedBy || User.IsInRole("Formand"))
             {
                 await _bookingService.DeleteBooking(id);
-                return RedirectToPage("./Booking");
+                TempData["SuccessMessage"] = "Booking Slettet";
+                return RedirectToPage("./Index");
             }
             else
             {
-                return RedirectToPage("/Index"); // Adjust the redirection target as needed
+                TempData["ErrorMessage"] = "Kun formand eller den bruger der har booked dette item kan slette en booking.";
+                return RedirectToPage("./Index"); 
             }
         }
     }
