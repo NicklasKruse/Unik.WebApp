@@ -4,6 +4,7 @@ using Stripe;
 using System.Net.Mime;
 using Unik.Application.Commands.Booking;
 using Unik.Application.Commands.Booking.DTO;
+using Unik.Application.Commands.EmailCommand;
 using Unik.Application.Queries.Booking;
 using Unik.Application.Queries.Booking.DTO;
 
@@ -19,8 +20,9 @@ namespace BackendApi.Controllers
         private readonly IEditBookingCommand _editBookingCommand;
         private readonly IDeleteBookingCommand _deleteBookingCommand;
         private readonly ILogger<BookingController> _logger;
+        private readonly ISendEmailCommand _sendEmailCommand;
 
-        public BookingController(IGetAllBookingQuery getAllBookingQuery, IGetBookingQuery getBookingQuery, ICreateBookingCommand createBookingCommand, IEditBookingCommand editBookingCommand, IDeleteBookingCommand deleteBookingCommand, ILogger<BookingController> logger)
+        public BookingController(IGetAllBookingQuery getAllBookingQuery, IGetBookingQuery getBookingQuery, ICreateBookingCommand createBookingCommand, IEditBookingCommand editBookingCommand, IDeleteBookingCommand deleteBookingCommand, ILogger<BookingController> logger, ISendEmailCommand sendEmailCommand)
         {
             _getAllBookingQuery = getAllBookingQuery;
             _getBookingQuery = getBookingQuery;
@@ -28,6 +30,7 @@ namespace BackendApi.Controllers
             _editBookingCommand = editBookingCommand;
             _deleteBookingCommand = deleteBookingCommand;
             _logger = logger;
+            _sendEmailCommand = sendEmailCommand;
         }
 
         [HttpPost("create")] //api/Booking/create
@@ -47,6 +50,7 @@ namespace BackendApi.Controllers
             try
             {
                 _createBookingCommand.CreateBooking(dto);
+                _sendEmailCommand.SendToSingleUser(dto);
                 return Created();
             }
             catch (Exception ex)

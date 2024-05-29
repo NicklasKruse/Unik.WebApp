@@ -17,7 +17,7 @@ namespace Unik.Infrastructure.EmailService
             SmtpClient client = new SmtpClient
             {
                 Port = 1025,
-                Host = "localhost",
+                Host = "fake-smtp-server",
                 EnableSsl = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,

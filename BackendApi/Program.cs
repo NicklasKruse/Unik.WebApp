@@ -32,6 +32,7 @@ using Unik.Application.Queries.MemberWithAddress.Implementation;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Unik.Infrastructure.EmailService;
 using Unik.Application.ServiceContracts.EmailService;
+using Unik.Application.Commands.EmailCommand;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -102,6 +103,7 @@ builder.Services.AddScoped<ICreateMemberWithAddressCommand, CreateMemberWithAddr
 builder.Services.AddScoped<IGetAllMemberWithAddressQuery, GetAllMemberWithAddressQuery>();
 
 builder.Services.AddTransient<Unik.Application.ServiceContracts.EmailService.IEmailSender, EmailSender>(); //Aspnet Identity har sin egen IEmailSender, så vi skal specificere hvilken vi vil bruge her.
+builder.Services.AddScoped<ISendEmailCommand, SendEmailCommand>();
 
 builder.Services.AddScoped<IItemMapper, ItemMapper>();
 

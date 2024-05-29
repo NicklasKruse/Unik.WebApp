@@ -1,14 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SqlServerContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Unik.Application.Queries.MemberWithAddress.DTO;
 using Unik.Application.Repositories;
 using Unik.Domain.Entities;
-using Unik.Domain.ValueObjects;
 
 namespace Unik.Infrastructure.Repositories
 {
@@ -31,7 +25,7 @@ namespace Unik.Infrastructure.Repositories
                 _context.Add(foreningsMedlem);
                 await _context.SaveChangesAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -58,7 +52,7 @@ namespace Unik.Infrastructure.Repositories
 
             if (address == null)
             {
-                return null; 
+                return null;
             }
 
             return new GetAddressQueryResultDto
@@ -77,27 +71,48 @@ namespace Unik.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        IEnumerable<MemberWithAddressQueryResultDto> IMemberWithAddressRepository.GetAllMemberWithAddress()
+        async Task<IEnumerable<MemberWithAddressQueryResultDto>> IMemberWithAddressRepository.GetAllMemberWithAddress()
         {
-            foreach(var memberWithAddress in _context.MemberWithAddress.Include(x => x.Address).AsNoTracking())
+            var memberWithAddressList = await _context.MemberWithAddress
+        .Include(x => x.Address)
+        .Select(memberWithAddress => new MemberWithAddressQueryResultDto
+        {
+            FirstName = memberWithAddress.FirstName,
+            LastName = memberWithAddress.LastName,
+            Email = memberWithAddress.Email,
+            Address = new GetAddressQueryResultDto
             {
-                yield return new MemberWithAddressQueryResultDto
-                {
-                    FirstName = memberWithAddress.FirstName,
-                    LastName = memberWithAddress.LastName,
-                    Email = memberWithAddress.Email,
-                    Address = new GetAddressQueryResultDto
-                    {
-                        City = memberWithAddress.Address.City,
-                        Country = memberWithAddress.Address.Country,
-                        Street = memberWithAddress.Address.Street,
-                        ZipCode = memberWithAddress.Address.ZipCode
-                    },
-                    DateOfCreation = memberWithAddress.DateOfCreation,
-                    CreatedBy = memberWithAddress.CreatedBy,
-                    LastModifiedDate = memberWithAddress.LastModifiedDate
-                };
-            }
+                City = memberWithAddress.Address.City,
+                Country = memberWithAddress.Address.Country,
+                Street = memberWithAddress.Address.Street,
+                ZipCode = memberWithAddress.Address.ZipCode
+            },
+            DateOfCreation = memberWithAddress.DateOfCreation,
+            CreatedBy = memberWithAddress.CreatedBy,
+            LastModifiedDate = memberWithAddress.LastModifiedDate
+        })
+        .ToListAsync();
+
+            return memberWithAddressList;
+            //foreach(var memberWithAddress in _context.MemberWithAddress.Include(x => x.Address).AsNoTracking())
+            //{
+            //    yield return new MemberWithAddressQueryResultDto
+            //    {
+            //        FirstName = memberWithAddress.FirstName,
+            //        LastName = memberWithAddress.LastName,
+            //        Email = memberWithAddress.Email,
+            //        Address = new GetAddressQueryResultDto
+            //        {
+            //            City = memberWithAddress.Address.City,
+            //            Country = memberWithAddress.Address.Country,
+            //            Street = memberWithAddress.Address.Street,
+            //            ZipCode = memberWithAddress.Address.ZipCode
+            //        },
+            //        DateOfCreation = memberWithAddress.DateOfCreation,
+            //        CreatedBy = memberWithAddress.CreatedBy,
+            //        LastModifiedDate = memberWithAddress.LastModifiedDate
+            //    };
         }
     }
 }
+

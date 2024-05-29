@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using Unik.Application.Commands.EmailCommand;
 using Unik.Application.Commands.Invitation;
 using Unik.Application.Commands.Invitation.RequestModels;
 using Unik.Application.Queries.Invitation;
@@ -16,25 +17,28 @@ namespace BackendApi.Controllers
         private readonly IGetAllInvitationQuery _getAllInvitationQuery;
         private readonly IEditInvitationCommand _editInvitationCommand;
         private readonly IDeleteInvitationCommand _deleteInvitationCommand;
+        private readonly ISendEmailCommand _sendEmailCommand;
 
-        public InvitationController(ICreateInvitationCommand createInvitationCommand, IGetInvitationQuery getInvitationQuery, IGetAllInvitationQuery getAllInvitationQuery, IEditInvitationCommand editInvitationCommand, IDeleteInvitationCommand deleteInvitationCommand)
+        public InvitationController(ICreateInvitationCommand createInvitationCommand, IGetInvitationQuery getInvitationQuery, IGetAllInvitationQuery getAllInvitationQuery, IEditInvitationCommand editInvitationCommand, IDeleteInvitationCommand deleteInvitationCommand, ISendEmailCommand sendEmailCommand)
         {
             _createInvitationCommand = createInvitationCommand;
             _getInvitationQuery = getInvitationQuery;
             _getAllInvitationQuery = getAllInvitationQuery;
             _editInvitationCommand = editInvitationCommand;
             _deleteInvitationCommand = deleteInvitationCommand;
+            _sendEmailCommand = sendEmailCommand;
         }
 
         [HttpPost("create")] //api/Invitation/create 
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post(InvitationRequestDto dto)
+        public async Task<IActionResult> Post(InvitationRequestDto dto)
         { //2024-01-20 date time format til swagger
             try
             {
                 _createInvitationCommand.CreateInvitation(dto);
+                await _sendEmailCommand.SendEmailsToAllMembersAsync(dto.CreatedBy, dto.Description);
                 return Created();
             }
             catch (Exception ex)
