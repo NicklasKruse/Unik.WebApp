@@ -73,6 +73,7 @@ builder.Services.AddScoped<IGetAllBookingQuery, GetAllBookingQuery>();
 builder.Services.AddScoped<IGetBookingQuery, GetBookingQuery>();
 builder.Services.AddScoped<IEditBookingCommand, EditBookingCommand>();
 builder.Services.AddScoped<IDeleteBookingCommand, DeleteBookingCommand>();
+builder.Services.AddScoped<IBookingDomainService, BookingDomainService>();
 
 //Service registrering Invitation
 builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();

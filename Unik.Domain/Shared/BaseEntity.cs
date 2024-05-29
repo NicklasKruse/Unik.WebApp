@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Unik.Domain.Shared
 {
+    /// <summary>
+    /// Entity base class. Har DateOfCreation, CreatedBy, LastModifiedDate og RowVersion
+    /// </summary>
     public class BaseEntity
     {
         public DateTime DateOfCreation { get; set; }

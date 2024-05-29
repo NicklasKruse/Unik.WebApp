@@ -33,9 +33,9 @@ namespace WebAppFront.Services.Implementation
                 await ChargeDeposit(depositRequest);
                 return;
             }
-            else if (response.StatusCode == HttpStatusCode.NotFound) 
+            else if (response.StatusCode == HttpStatusCode.BadRequest) 
             {
-                throw new Exception("Endpoint not found");
+                throw new Exception("Bad Request");
             }
             else
             {

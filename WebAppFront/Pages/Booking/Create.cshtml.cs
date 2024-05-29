@@ -30,7 +30,7 @@ namespace WebAppFront.Pages.Booking
         }
         public async Task<IActionResult> OnPost(int id)
         {
-            var item = await _itemService.GetItemById(id); 
+            var item = await _itemService.GetItemById(id);
             if (item == null)
             {
                 return NotFound();
@@ -45,7 +45,16 @@ namespace WebAppFront.Pages.Booking
                 DateOfCreation = DateTime.Now,
                 CreatedBy = User.Identity.Name
             };
-            await _bookingService.CreateBooking(booking);
+            try
+            {
+                await _bookingService.CreateBooking(booking);
+
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"{ex.Message}: Dette Item er allerede booked på denne dato";
+                return RedirectToPage("Create");
+            };
             return RedirectToPage("Index");
         }
     }

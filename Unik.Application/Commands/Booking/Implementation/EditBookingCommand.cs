@@ -13,14 +13,12 @@ namespace Unik.Application.Commands.Booking.Implementation
 {
     public class EditBookingCommand : IEditBookingCommand
     {
-        private readonly IBookingDomainService _domainService;
         private readonly IBookingRepository _bookingRepository;
         private readonly IItemRepository _itemRepository;
         private readonly IItemMapper _itemMapper;
 
-        public EditBookingCommand(IBookingDomainService domainService, IBookingRepository bookingRepository, IItemRepository itemRepository, IItemMapper itemMapper)
+        public EditBookingCommand(IBookingRepository bookingRepository, IItemRepository itemRepository, IItemMapper itemMapper)
         {
-            _domainService = domainService;
             _bookingRepository = bookingRepository;
             _itemRepository = itemRepository;
 

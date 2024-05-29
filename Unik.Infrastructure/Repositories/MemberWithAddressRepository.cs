@@ -71,5 +71,10 @@ namespace Unik.Infrastructure.Repositories
             };
 
         }
+
+        void IMemberWithAddressRepository.UpdateMemberWithAddress(MemberWithAddress MWA)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -12,7 +12,7 @@ using Unik.Domain.ValueObjects;
 namespace Unik.Infrastructure.DomainServices
 {
    
-    public class BookingDomainService : IBookingDomainService
+public class BookingDomainService : IBookingDomainService
     {
         private readonly BackendDbContext _context;
 
@@ -20,9 +20,13 @@ namespace Unik.Infrastructure.DomainServices
         {
             _context = context;
         }
-        bool IBookingDomainService.BookingExistsOnDate(DateTime date, Item item)
+
+        public bool BookingExistsOnDate(DateTime date, Item item)
         {
-            return _context.Bookings.AsNoTracking().ToList().Any(a => a.StartDate <= date && a.EndDate >= date && a.Item.Id == item.Id);
+            return _context.Bookings
+               .Include(b => b.Item) // Item
+               .AsNoTracking() 
+               .Any(a => a.StartDate <= date && a.EndDate >= date && a.Item.Id == item.Id);
         }
     }
 

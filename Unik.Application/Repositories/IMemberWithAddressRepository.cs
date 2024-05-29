@@ -14,5 +14,6 @@ namespace Unik.Application.Repositories
         Task CreateMemberWithAddress(MemberWithAddress foreningsMedlem);
         GetAddressQueryResultDto GetAddressByStreetCityZipCodeCountry(string street, string city, string zipCode, string country);
         MemberWithAddress Load(string Street, string City, string ZipCode, string Country);
+        void UpdateMemberWithAddress(MemberWithAddress MWA);
     }
 }
