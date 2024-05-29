@@ -12,6 +12,11 @@ services:
     build:
       context: .
       dockerfile: WebAppFront/Dockerfile
+  fake-smtp-server:
+    image: haravich/fake-smtp-server
+    ports:
+      - "1025:1025"
+      - "1080:1080"
       # Sqlserver
   # sqlserver:
   #    image: mcr.microsoft.com/mssql/server:2022-latest

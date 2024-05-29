@@ -16,12 +16,11 @@ namespace Unik.Infrastructure.EmailService
         {
             SmtpClient client = new SmtpClient
             {
-                Port = 587,
-                Host = "smtp.example.com",
-                EnableSsl = true,
+                Port = 1025,
+                Host = "localhost",
+                EnableSsl = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("username@example.com", "password")
             };
 
             return client.SendMailAsync(sender, emailRecipient, subject, message);
