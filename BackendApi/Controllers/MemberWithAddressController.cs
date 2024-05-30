@@ -21,6 +21,7 @@ namespace BackendApi.Controllers
             _getAllMemberWithAddressQuery = getAllMemberWithAddressQuery;
             _deleteMemberWithAddressCommand = deleteMemberWithAddressCommand;
         }
+
         [HttpPost("create")] //api/MemberWithAddress/create
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -38,6 +39,7 @@ namespace BackendApi.Controllers
             }
 
         }
+
         [HttpGet] //api/MemberWithAddress
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -45,8 +47,9 @@ namespace BackendApi.Controllers
         public ActionResult<IEnumerable<MemberWithAddressQueryResultDto>> Get()
         {
             var membersWithAddress = _getAllMemberWithAddressQuery.GetAllMemberWithAddress();
-            return Ok(membersWithAddress);
+            return membersWithAddress.ToList();
         }
+
         [HttpDelete("delete/{id}")] //api/MemberWithAddress/delete/{id}
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

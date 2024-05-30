@@ -101,6 +101,7 @@ builder.Services.AddScoped<IDeleteItemCommand, DeleteItemCommand>();
 builder.Services.AddScoped<IMemberWithAddressRepository, MemberWithAddressRepository>();
 builder.Services.AddScoped<ICreateMemberWithAddressCommand, CreateMemberWithAddressCommand>();
 builder.Services.AddScoped<IGetAllMemberWithAddressQuery, GetAllMemberWithAddressQuery>();
+builder.Services.AddScoped<IDeleteMemberWithAddressCommand, DeleteMemberWithAddressCommand>();
 
 builder.Services.AddTransient<Unik.Application.ServiceContracts.EmailService.IEmailSender, EmailSender>(); //Aspnet Identity har sin egen IEmailSender, så vi skal specificere hvilken vi vil bruge her.
 builder.Services.AddScoped<ISendEmailCommand, SendEmailCommand>();

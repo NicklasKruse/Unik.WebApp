@@ -46,6 +46,11 @@
                     <td>@user.Email</td>
                     <td>
                         <a asp-page="EditUserRoles" asp-route-id="@user.Id" class="btn btn-primary">Edit Role</a>
+                        @* <form asp-page-handler="OnPostDelete" method="post" onsubmit="return confirmDelete(this)">
+                            <input type="hidden" name="stringId" value="@user.Id" />
+                            <input type="hidden" name="intId" value="@member.Id" /> 
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form> *@
                     </td>
                     <td>
                         @if (member != null)
@@ -67,3 +72,8 @@
         </tbody>
     </table>
 </div>
+<script>
+    function confirmDelete(form) {
+        return confirm('Er du sikker på at du vil slette denne bruger?');
+    }
+</script>
