@@ -28,6 +28,19 @@ namespace WebAppFront.Services.Implementation
             }
         }
 
+        async Task IAddressService.DeleteMemberWithAddress(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"api/MemberWithAddress/delete/{id}/");
+            if (response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            else
+            {
+                throw new Exception("Kunne ikke slette medlem med adresse");
+            }
+        }
+
         async Task<IEnumerable<ForeningsMedlemQueryResultDto>> IAddressService.GetAllMemberWithAddress()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<ForeningsMedlemQueryResultDto>>("api/MemberWithAddress");

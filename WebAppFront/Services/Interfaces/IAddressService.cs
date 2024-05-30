@@ -9,5 +9,6 @@ namespace WebAppFront.Services.Interfaces
     {
         Task CreateMemberWithAddress(ForeningsMedlemCreateRequestDto foreningsMedlem);
         Task<IEnumerable<ForeningsMedlemQueryResultDto>> GetAllMemberWithAddress();
+        Task DeleteMemberWithAddress(int id);
     }
 }

@@ -29,8 +29,10 @@
         cursor: pointer;
     }
 </style>
-
-<h1>Create Invitation</h1>
+@if (User.IsInRole("Formand") || User.IsInRole("Bestyrelse"))
+{
+<h1>Opret Invitation</h1>
+<h4>Her opretter du en invitation. Vælg dato ved at trykke på kalender ikon og dernæst sæt et tidspunkt. Tidspunktet kunne således ud: 12.30</h4>
 
 <form method="post">
     <div class="form-group">
@@ -45,5 +47,12 @@
         <span asp-validation-for="CreateInvitationVM.Description" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+    <button type="submit" class="btn btn-primary">Send Invitation</button>
+    <h6>Bemærk at når du tryker på opret her, vil samtlige medlemmer få en mail vedrørende invitation. Sikre at ovenstående er korret inden du inviter</h6>
+    </form>
+}
+else
+{
+        <h1>Du har ikke adgang til denne side</h1>
+    <h4>Denne side er kun for formand og bestyrelse</h4>
+}

@@ -4,6 +4,7 @@ namespace Unik.Application.Queries.MemberWithAddress
 {
     public interface IGetAllMemberWithAddressQuery
     {
-        Task<IEnumerable<MemberWithAddressQueryResultDto>> GetAllMemberWithAddress();
+        Task<IEnumerable<MemberWithAddressQueryResultDto>> GetAllMemberWithAddressAsync();
+        IEnumerable<MemberWithAddressQueryResultDto> GetAllMemberWithAddress();
     }
 }

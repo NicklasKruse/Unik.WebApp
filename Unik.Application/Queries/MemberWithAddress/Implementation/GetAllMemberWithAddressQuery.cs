@@ -3,6 +3,9 @@ using Unik.Application.Repositories;
 
 namespace Unik.Application.Queries.MemberWithAddress.Implementation
 {
+    /// <summary>
+    /// Har to metoder. Synkron og asynkron
+    /// </summary>
     public class GetAllMemberWithAddressQuery : IGetAllMemberWithAddressQuery
     {
         private readonly IMemberWithAddressRepository _memberWithAddressRepository;
@@ -11,10 +14,17 @@ namespace Unik.Application.Queries.MemberWithAddress.Implementation
         {
             _memberWithAddressRepository = memberWithAddressRepository;
         }
-
-        async Task<IEnumerable<MemberWithAddressQueryResultDto>> IGetAllMemberWithAddressQuery.GetAllMemberWithAddress()
+        /// <summary>
+        /// Async - bruges i email service
+        /// </summary>
+        /// <returns></returns>
+        async Task<IEnumerable<MemberWithAddressQueryResultDto>> IGetAllMemberWithAddressQuery.GetAllMemberWithAddressAsync()
         {
-           return await _memberWithAddressRepository.GetAllMemberWithAddress();
+           return await _memberWithAddressRepository.GetAllMemberWithAddressAsync();
+        }
+        IEnumerable<MemberWithAddressQueryResultDto> IGetAllMemberWithAddressQuery.GetAllMemberWithAddress()
+        {
+            return _memberWithAddressRepository.GetAllMemberWithAddress();
         }
     }
 }

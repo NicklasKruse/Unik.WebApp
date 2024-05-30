@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppFront.Services.Interfaces;
 
 namespace WebAppFront.Pages.Invitations
 {
+
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly IInvitationService _invitationService;

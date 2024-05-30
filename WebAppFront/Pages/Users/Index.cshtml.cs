@@ -60,5 +60,20 @@ namespace WebAppFront.Pages.Users
                 Users = allUsers;
             }
         }
+        public async Task<IActionResult> OnPostDelete(string stringId, int intId)
+        {
+            var user = await _userManager.FindByIdAsync(stringId);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+            else
+            {
+                await _userManager.DeleteAsync(user);
+                await _addressService.DeleteMemberWithAddress(intId);
+            }
+            
+            return RedirectToAction("./Index");
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Unik.Application.Commands.EmailCommand
         }
         public async Task SendEmailsToAllMembersAsync(string sender, string message)
         {
-            var members = await _getAllMemberWithAddressQuery.GetAllMemberWithAddress();
+            var members = await _getAllMemberWithAddressQuery.GetAllMemberWithAddressAsync();
 
             foreach (var member in members)
             {

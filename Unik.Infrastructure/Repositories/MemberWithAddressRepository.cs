@@ -30,7 +30,28 @@ namespace Unik.Infrastructure.Repositories
                 throw ex;
             }
         }
+        /// <summary>
+        /// Load med int id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        MemberWithAddress IMemberWithAddressRepository.Load(int id)
+        {
+            var MWA = _context.MemberWithAddress
+                .Include(x => x.Address)
+                .FirstOrDefault(x => x.Id == id) ?? throw new Exception("Member with address not found");
+            return MWA;
 
+        }
+        /// <summary>
+        /// Load med adresse info
+        /// </summary>
+        /// <param name="Street"></param>
+        /// <param name="City"></param>
+        /// <param name="ZipCode"></param>
+        /// <param name="Country"></param>
+        /// <returns></returns>
         MemberWithAddress IMemberWithAddressRepository.Load(string Street, string City, string ZipCode, string Country)
         {
             var memberWithAddress = _context.MemberWithAddress
@@ -70,8 +91,11 @@ namespace Unik.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
-
-        async Task<IEnumerable<MemberWithAddressQueryResultDto>> IMemberWithAddressRepository.GetAllMemberWithAddress()
+        /// <summary>
+        /// Async til email service
+        /// </summary>
+        /// <returns></returns>
+        async Task<IEnumerable<MemberWithAddressQueryResultDto>> IMemberWithAddressRepository.GetAllMemberWithAddressAsync()
         {
             var memberWithAddressList = await _context.MemberWithAddress
         .Include(x => x.Address)
@@ -94,24 +118,35 @@ namespace Unik.Infrastructure.Repositories
         .ToListAsync();
 
             return memberWithAddressList;
-            //foreach(var memberWithAddress in _context.MemberWithAddress.Include(x => x.Address).AsNoTracking())
-            //{
-            //    yield return new MemberWithAddressQueryResultDto
-            //    {
-            //        FirstName = memberWithAddress.FirstName,
-            //        LastName = memberWithAddress.LastName,
-            //        Email = memberWithAddress.Email,
-            //        Address = new GetAddressQueryResultDto
-            //        {
-            //            City = memberWithAddress.Address.City,
-            //            Country = memberWithAddress.Address.Country,
-            //            Street = memberWithAddress.Address.Street,
-            //            ZipCode = memberWithAddress.Address.ZipCode
-            //        },
-            //        DateOfCreation = memberWithAddress.DateOfCreation,
-            //        CreatedBy = memberWithAddress.CreatedBy,
-            //        LastModifiedDate = memberWithAddress.LastModifiedDate
-            //    };
+        }
+
+        IEnumerable<MemberWithAddressQueryResultDto> IMemberWithAddressRepository.GetAllMemberWithAddress()
+        {
+            foreach (var memberWithAddress in _context.MemberWithAddress.Include(x => x.Address).AsNoTracking())
+            {
+                yield return new MemberWithAddressQueryResultDto
+                {
+                    FirstName = memberWithAddress.FirstName,
+                    LastName = memberWithAddress.LastName,
+                    Email = memberWithAddress.Email,
+                    Address = new GetAddressQueryResultDto
+                    {
+                        City = memberWithAddress.Address.City,
+                        Country = memberWithAddress.Address.Country,
+                        Street = memberWithAddress.Address.Street,
+                        ZipCode = memberWithAddress.Address.ZipCode
+                    },
+                    DateOfCreation = memberWithAddress.DateOfCreation,
+                    CreatedBy = memberWithAddress.CreatedBy,
+                    LastModifiedDate = memberWithAddress.LastModifiedDate
+                };
+            }
+        }
+
+        void IMemberWithAddressRepository.DeleteMemberWithAddress(MemberWithAddress MWA)
+        {
+            _context.Remove(MWA);
+            _context.SaveChanges();
         }
     }
 }

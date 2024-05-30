@@ -13,11 +13,13 @@ namespace BackendApi.Controllers
     {
         private readonly ICreateMemberWithAddressCommand _createMemberWithAddressCommand;
         private readonly IGetAllMemberWithAddressQuery _getAllMemberWithAddressQuery;
+        private readonly IDeleteMemberWithAddressCommand _deleteMemberWithAddressCommand;
 
-        public MemberWithAddressController(ICreateMemberWithAddressCommand createMemberWithAddressCommand, IGetAllMemberWithAddressQuery getAllMemberWithAddressQuery)
+        public MemberWithAddressController(ICreateMemberWithAddressCommand createMemberWithAddressCommand, IGetAllMemberWithAddressQuery getAllMemberWithAddressQuery, IDeleteMemberWithAddressCommand deleteMemberWithAddressCommand)
         {
             _createMemberWithAddressCommand = createMemberWithAddressCommand;
             _getAllMemberWithAddressQuery = getAllMemberWithAddressQuery;
+            _deleteMemberWithAddressCommand = deleteMemberWithAddressCommand;
         }
         [HttpPost("create")] //api/MemberWithAddress/create
         [Consumes(MediaTypeNames.Application.Json)]
@@ -44,6 +46,22 @@ namespace BackendApi.Controllers
         {
             var membersWithAddress = _getAllMemberWithAddressQuery.GetAllMemberWithAddress();
             return Ok(membersWithAddress);
+        }
+        [HttpDelete("delete/{id}")] //api/MemberWithAddress/delete/{id}
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<MemberWithAddressDeleteRequestDto> Delete(int id)
+        {
+            try
+            {
+                _deleteMemberWithAddressCommand.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -14,7 +14,10 @@ namespace Unik.Application.Repositories
         Task CreateMemberWithAddress(MemberWithAddress foreningsMedlem);
         GetAddressQueryResultDto GetAddressByStreetCityZipCodeCountry(string street, string city, string zipCode, string country);
         MemberWithAddress Load(string Street, string City, string ZipCode, string Country);
+        MemberWithAddress Load(int id);
+        void DeleteMemberWithAddress(MemberWithAddress MWA);
         void UpdateMemberWithAddress(MemberWithAddress MWA);
-        Task<IEnumerable<MemberWithAddressQueryResultDto>> GetAllMemberWithAddress();
+        Task<IEnumerable<MemberWithAddressQueryResultDto>> GetAllMemberWithAddressAsync();
+        IEnumerable<MemberWithAddressQueryResultDto> GetAllMemberWithAddress();
     }
 }

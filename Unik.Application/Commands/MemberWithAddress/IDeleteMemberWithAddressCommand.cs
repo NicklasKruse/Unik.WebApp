@@ -8,6 +8,6 @@ namespace Unik.Application.Commands.MemberWithAddress
 {
     public interface IDeleteMemberWithAddressCommand
     {
-        void Delete(int id);
+       void Delete(int id);
     }
 }
