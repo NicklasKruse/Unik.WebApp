@@ -34,7 +34,7 @@ namespace WebAppFront.Pages.Invitations
                 Date = CreateInvitationVM.Date,
                 Description = CreateInvitationVM.Description,
                 CreatedBy = User.Identity.Name,
-                DateOfCreation = DateTime.Now,
+                DateOfCreation = DateTime.UtcNow,
             };
 
             await _invitationService.CreateInvitation(invitation);

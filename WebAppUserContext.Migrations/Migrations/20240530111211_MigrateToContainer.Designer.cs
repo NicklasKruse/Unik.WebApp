@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebAppUserContext.Migrations.Migrations
 {
     [DbContext(typeof(WebAppUserDbContext))]
-    partial class WebAppUserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240530111211_MigrateToContainer")]
+    partial class MigrateToContainer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,21 +56,21 @@ namespace WebAppUserContext.Migrations.Migrations
                         new
                         {
                             Id = "9ddd52f5-bfdc-43fa-b5bc-e501e09dc17b",
-                            ConcurrencyStamp = "9d5110f2-dd77-400a-801a-eab55aa7e023",
+                            ConcurrencyStamp = "6450a297-340f-4f21-98b3-fff62eefd1e1",
                             Name = "Medlem",
                             NormalizedName = "MEDLEM"
                         },
                         new
                         {
                             Id = "51db585d-dfdb-4905-9c37-508424d019c0",
-                            ConcurrencyStamp = "aa4322b8-629a-4345-a4c9-6e73e36070b9",
+                            ConcurrencyStamp = "d10253f9-3e06-4b77-a9c1-fc17f37746f6",
                             Name = "Bestyrelse",
                             NormalizedName = "BESTYRELSE"
                         },
                         new
                         {
                             Id = "08dad08d-70d6-4056-b58f-63685eb1cfb4",
-                            ConcurrencyStamp = "95d26ae5-386d-4aeb-a82b-9a6c9c2cc688",
+                            ConcurrencyStamp = "6ed6ff5f-4179-4fc6-b140-8e97dc633a97",
                             Name = "Formand",
                             NormalizedName = "FORMAND"
                         });
@@ -169,13 +172,13 @@ namespace WebAppUserContext.Migrations.Migrations
                         {
                             Id = "1b9346c3-fa10-4f98-83ea-33c6b5711ad1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "649c27f5-fd7c-483f-b9e1-c537a2fc700e",
+                            ConcurrencyStamp = "0187dfcb-cbe9-47c5-97f9-e88f39539d76",
                             Email = "admin@admin.dk",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.DK",
                             NormalizedUserName = "ADMIN@ADMIN.DK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGjMmiCau68hE4mtEh0yGMA9Rb7Q5pZnLmhlDe/EruIEjHGY5dHV1DcOdb21cDUjog==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKnZ5Z9C9k0z3+fMCxaALyq74GqmvzOc1R8ESQzHbyrz/xJqX/CHtCVqBP56VXnTYw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
