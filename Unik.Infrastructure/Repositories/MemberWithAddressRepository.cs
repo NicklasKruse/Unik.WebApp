@@ -101,6 +101,7 @@ namespace Unik.Infrastructure.Repositories
         .Include(x => x.Address)
         .Select(memberWithAddress => new MemberWithAddressQueryResultDto
         {
+            id = memberWithAddress.Id,
             FirstName = memberWithAddress.FirstName,
             LastName = memberWithAddress.LastName,
             Email = memberWithAddress.Email,
@@ -126,6 +127,7 @@ namespace Unik.Infrastructure.Repositories
             {
                 yield return new MemberWithAddressQueryResultDto
                 {
+                    id = memberWithAddress.Id,
                     FirstName = memberWithAddress.FirstName,
                     LastName = memberWithAddress.LastName,
                     Email = memberWithAddress.Email,

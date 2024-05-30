@@ -60,7 +60,7 @@ namespace WebAppFront.Pages.Users
                 Users = allUsers;
             }
         }
-        public async Task<IActionResult> OnPostDelete(string stringId, int intId)
+        public async Task<IActionResult> OnPostDeleteAsync(string stringId, int intId)
         {
             var user = await _userManager.FindByIdAsync(stringId);
             if (user == null)
@@ -69,11 +69,19 @@ namespace WebAppFront.Pages.Users
             }
             else
             {
-                await _userManager.DeleteAsync(user);
-                await _addressService.DeleteMemberWithAddress(intId);
+                try
+                {
+                    await _addressService.DeleteMemberWithAddress(intId);
+                    await _userManager.DeleteAsync(user);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+                
             }
-            
-            return RedirectToAction("./Index");
+
+            return RedirectToPage("./Index");
         }
     }
 }

@@ -45,12 +45,15 @@
                     <td>@user.UserName</td>
                     <td>@user.Email</td>
                     <td>
-                        <a asp-page="EditUserRoles" asp-route-id="@user.Id" class="btn btn-primary">Edit Role</a>
-                        @* <form asp-page-handler="OnPostDelete" method="post" onsubmit="return confirmDelete(this)">
+                        <a asp-page="EditUserRoles" asp-route-id="@user.Id" class="btn btn-primary">Tilføj eller Fjern Rolle</a>
+                        <form method="post" asp-page="./Index" asp-page-handler="Delete" onsubmit="return confirm('Er du sikker på at du vil slette denne bruger??')">
                             <input type="hidden" name="stringId" value="@user.Id" />
-                            <input type="hidden" name="intId" value="@member.Id" /> 
+                            @if (member != null)
+                            {
+                                <input type="hidden" name="intId" value="@member.Id" />
+                            }
                             <button type="submit" class="btn btn-danger">Delete</button>
-                        </form> *@
+                        </form>
                     </td>
                     <td>
                         @if (member != null)
@@ -71,9 +74,44 @@
             }
         </tbody>
     </table>
+
+   @*  <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+                <th>Personal Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                var member = Model.Members.FirstOrDefault(m => m.Email == user.Email);
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a asp-page="EditUserRoles" asp-route-id="@user.Id" class="btn btn-primary">Edit Role</a>
+                    </td>
+                    <td>
+                        @if (member != null)
+                        {
+                            <div class="info-box">
+                                <strong>Personlig Information:</strong><br />
+                                Navn: @member.FirstName @member.LastName<br />
+                                By: @member.Address.City<br />
+                                Adresse: @member.Address.Street
+                            </div>
+                        }
+                        else
+                        {
+                            <span>No member information available.</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table> *@
 </div>
-<script>
-    function confirmDelete(form) {
-        return confirm('Er du sikker på at du vil slette denne bruger?');
-    }
-</script>
+
