@@ -43,7 +43,6 @@ public class WebAppUserDbContext : IdentityDbContext<IdentityUser>
             new IdentityRole { Id = formandRoleId, Name = "Formand", NormalizedName = "FORMAND", ConcurrencyStamp = Guid.NewGuid().ToString() }
         };
 
-        // Add roles to the model
         modelBuilder.Entity<IdentityRole>().HasData(roles);
     }
 
