@@ -86,7 +86,7 @@ namespace BackendApi.Controllers
             var member = _getMemberQuery.GetMember(id);
             return member;
         }/// <summary>
-        /// //
+        /// ssssss
         /// </summary>
         /// <returns></returns>
         [HttpGet("getall")]
