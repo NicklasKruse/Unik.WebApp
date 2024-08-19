@@ -85,7 +85,10 @@ namespace BackendApi.Controllers
 
             var member = _getMemberQuery.GetMember(id);
             return member;
-        }
+        }/// <summary>
+        /// //
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("getall")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
